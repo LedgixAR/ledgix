@@ -43,9 +43,9 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
 }
 .nav-inner{
   display:flex;align-items:center;justify-content:space-between;
-  height:80px;
+  height:90px; /* Aumentado de 80px a 90px para mejor ajuste del logo */
 }
-.nav-logo img{height:44px;width:auto;display:block}
+.nav-logo img{height:64px;width:auto;display:block} /* Logo más grande */
 
 .nav-menu{display:flex;align-items:center;gap:8px;list-style:none}
 .nav-menu>li{position:relative}
@@ -121,7 +121,7 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
 /* Mobile drawer */
 .mobile-drawer{
   display:none;
-  position:fixed;top:80px;left:0;right:0;bottom:0;
+  position:fixed;top:90px;left:0;right:0;bottom:0;
   background:rgba(7,14,36,0.98);
   backdrop-filter:blur(20px);
   z-index:190;
@@ -865,7 +865,8 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
 <!-- ═══════════════════════════════════ NAVBAR ═══════════════════════════════════ -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">
+    <!-- Logo ahora apunta a la raíz del sitio -->
+    <a href="/ledgix/" class="nav-logo">
       <img src="logo_LEDGIX.jpeg" alt="Ledgix — Sistemas de Información Financiera"/>
     </a>
 
@@ -873,27 +874,27 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
       <li>
         <a href="#servicios">Servicios <span class="chevron">▾</span></a>
         <div class="dropdown">
-          <a href="erp.html">
+          <a href="/ledgix/erp.html">
             <div class="drop-icon">⚙️</div>
             <div class="drop-text"><strong>Implementación de ERP</strong><span>Parametrización y puesta a punto de sistemas de gestión empresarial</span></div>
           </a>
-          <a href="contable.html">
+          <a href="/ledgix/contable.html">
             <div class="drop-icon">📒</div>
             <div class="drop-text"><strong>Gestión Contable e Impositiva</strong><span>Liquidación de impuestos, balances y auditoría interna</span></div>
           </a>
-          <a href="costos.html">
+          <a href="/ledgix/costos.html">
             <div class="drop-icon">🏭</div>
             <div class="drop-text"><strong>Sistemas de Costos</strong><span>Estructura de costos para conocer tu rentabilidad real</span></div>
           </a>
-          <a href="automatizacion.html">
+          <a href="/ledgix/automatizacion.html">
             <div class="drop-icon">🔄</div>
             <div class="drop-text"><strong>Automatización de Procesos</strong><span>Eliminamos tareas repetitivas con circuitos eficientes</span></div>
           </a>
-          <a href="tableros.html">
+          <a href="/ledgix/tableros.html">
             <div class="drop-icon">📈</div>
             <div class="drop-text"><strong>Tableros de Control</strong><span>Dashboards financieros y operativos en tiempo real</span></div>
           </a>
-          <a href="soporte.html">
+          <a href="/ledgix/soporte.html">
             <div class="drop-icon">🎓</div>
             <div class="drop-text"><strong>Soporte y Capacitación</strong><span>Acompañamiento continuo post-implementación</span></div>
           </a>
@@ -906,7 +907,8 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
     </ul>
 
     <div class="nav-actions">
-      <a href="#portal" class="nav-portal">Acceso Clientes</a>
+      <!-- Botón acceso a clientes: ahora apunta a portal.html (futura página) -->
+      <a href="/ledgix/portal.html" class="nav-portal">Acceso Clientes</a>
       <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20operativo." class="nav-cta-btn" target="_blank">Diagnóstico gratuito</a>
     </div>
 
@@ -927,21 +929,21 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
   </ul>
   <div class="mobile-services-label">Servicios</div>
   <div class="mobile-services-grid">
-    <a href="erp.html" onclick="closeMobile()"><span class="icon">⚙️</span><span class="label">Implementación de ERP</span></a>
-    <a href="contable.html" onclick="closeMobile()"><span class="icon">📒</span><span class="label">Gestión Contable e Impositiva</span></a>
-    <a href="costos.html" onclick="closeMobile()"><span class="icon">🏭</span><span class="label">Sistemas de Costos</span></a>
-    <a href="automatizacion.html" onclick="closeMobile()"><span class="icon">🔄</span><span class="label">Automatización de Procesos</span></a>
-    <a href="tableros.html" onclick="closeMobile()"><span class="icon">📈</span><span class="label">Tableros de Control</span></a>
-    <a href="soporte.html" onclick="closeMobile()"><span class="icon">🎓</span><span class="label">Soporte y Capacitación</span></a>
+    <a href="/ledgix/erp.html" onclick="closeMobile()"><span class="icon">⚙️</span><span class="label">Implementación de ERP</span></a>
+    <a href="/ledgix/contable.html" onclick="closeMobile()"><span class="icon">📒</span><span class="label">Gestión Contable e Impositiva</span></a>
+    <a href="/ledgix/costos.html" onclick="closeMobile()"><span class="icon">🏭</span><span class="label">Sistemas de Costos</span></a>
+    <a href="/ledgix/automatizacion.html" onclick="closeMobile()"><span class="icon">🔄</span><span class="label">Automatización de Procesos</span></a>
+    <a href="/ledgix/tableros.html" onclick="closeMobile()"><span class="icon">📈</span><span class="label">Tableros de Control</span></a>
+    <a href="/ledgix/soporte.html" onclick="closeMobile()"><span class="icon">🎓</span><span class="label">Soporte y Capacitación</span></a>
   </div>
   <div class="mobile-actions">
     <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20operativo." class="mobile-wsp" target="_blank">💬 Diagnóstico sin cargo</a>
-    <a href="#portal" class="mobile-portal" onclick="closeMobile()">🔐 Acceso Clientes</a>
+    <!-- Enlace móvil a portal.html -->
+    <a href="/ledgix/portal.html" class="mobile-portal" onclick="closeMobile()">🔐 Acceso Clientes</a>
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
+<!-- ═══════════════════════════════════ HERO (sin cambios relevantes en enlaces internos) ═══════════════════════════════════ -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -1005,8 +1007,7 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════ CREDIBILIDAD ═══════════════════════════════════ -->
+<!-- ═══════════════════════════════════ CREDIBILIDAD (sin enlaces internos) ═══════════════════════════════════ -->
 <div class="credibility">
   <div class="cred-inner">
     <div class="cred-label">Ecosistema de soluciones</div>
@@ -1022,8 +1023,7 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════ DOLOR ═══════════════════════════════════ -->
+<!-- ═══════════════════════════════════ DOLOR (sin enlaces externos) ═══════════════════════════════════ -->
 <section class="pain" id="problema">
   <div class="container">
     <div class="pain-layout">
@@ -1037,350 +1037,77 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
           </div>
         </div>
       </div>
-
       <div class="pain-right reveal-right">
         <div class="sec-tag">El problema real</div>
         <h2 class="sec-title">¿Tu empresa opera con información fragmentada?</h2>
         <p class="sec-sub">La mayoría de las PyMEs argentinas conviven con procesos manuales, sistemas desconectados y sin visibilidad financiera real. Eso tiene un costo concreto.</p>
         <div class="pain-list">
-          <div class="pain-item">
-            <div class="pi-icon">📊</div>
-            <div class="pi-text"><h4>Falta de control financiero real</h4><p>No sabés exactamente cuánto ganás o perdés hasta que cierra el mes, y a veces ni eso.</p></div>
-          </div>
-          <div class="pain-item">
-            <div class="pi-icon">🗂️</div>
-            <div class="pi-text"><h4>Caos de planillas y papeles</h4><p>Tu equipo pierde horas cargando datos a mano y arrastrando errores en Excels compartidos.</p></div>
-          </div>
-          <div class="pain-item">
-            <div class="pi-icon">🔗</div>
-            <div class="pi-text"><h4>Sistemas que no se hablan</h4><p>La facturación, el stock y la contabilidad funcionan en silos. El dato se duplica y se distorsiona.</p></div>
-          </div>
-          <div class="pain-item">
-            <div class="pi-icon">📅</div>
-            <div class="pi-text"><h4>Presión impositiva constante</h4><p>Los vencimientos de AFIP te corren de atrás porque la información no llega ordenada ni a tiempo.</p></div>
-          </div>
-          <div class="pain-item">
-            <div class="pi-icon">💸</div>
-            <div class="pi-text"><h4>Costos sin visibilidad</h4><p>No sabés cuánto te cuesta producir cada unidad o prestar cada servicio. Tus márgenes son una estimación.</p></div>
-          </div>
+          <div class="pain-item"><div class="pi-icon">📊</div><div class="pi-text"><h4>Falta de control financiero real</h4><p>No sabés exactamente cuánto ganás o perdés hasta que cierra el mes, y a veces ni eso.</p></div></div>
+          <div class="pain-item"><div class="pi-icon">🗂️</div><div class="pi-text"><h4>Caos de planillas y papeles</h4><p>Tu equipo pierde horas cargando datos a mano y arrastrando errores en Excels compartidos.</p></div></div>
+          <div class="pain-item"><div class="pi-icon">🔗</div><div class="pi-text"><h4>Sistemas que no se hablan</h4><p>La facturación, el stock y la contabilidad funcionan en silos. El dato se duplica y se distorsiona.</p></div></div>
+          <div class="pain-item"><div class="pi-icon">📅</div><div class="pi-text"><h4>Presión impositiva constante</h4><p>Los vencimientos de AFIP te corren de atrás porque la información no llega ordenada ni a tiempo.</p></div></div>
+          <div class="pain-item"><div class="pi-icon">💸</div><div class="pi-text"><h4>Costos sin visibilidad</h4><p>No sabés cuánto te cuesta producir cada unidad o prestar cada servicio. Tus márgenes son una estimación.</p></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════ SERVICIOS ═══════════════════════════════════ -->
+<!-- ═══════════════════════════════════ SERVICIOS (enlaces a páginas en "Saber más →" modificados) ═══════════════════════════════════ -->
 <section class="services" id="servicios">
   <div class="container">
     <div class="services-intro reveal">
-      <div>
-        <div class="sec-tag">Lo que hacemos</div>
-        <h2 class="sec-title">Servicios diseñados para PyMEs que quieren escalar con orden.</h2>
-      </div>
-      <div class="services-intro-right">
-        <p>No somos programadores que instalan software sin entender de balances, ni contadores que le tienen miedo a la tecnología. Somos los dos al mismo tiempo — y esa es la diferencia que define el resultado.</p>
-        <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20saber%20m%C3%A1s%20sobre%20sus%20servicios." class="btn-gold" style="font-size:0.78rem;padding:13px 26px;" target="_blank">Consultá sin cargo →</a>
-      </div>
+      <div><div class="sec-tag">Lo que hacemos</div><h2 class="sec-title">Servicios diseñados para PyMEs que quieren escalar con orden.</h2></div>
+      <div class="services-intro-right"><p>No somos programadores que instalan software sin entender de balances, ni contadores que le tienen miedo a la tecnología. Somos los dos al mismo tiempo — y esa es la diferencia que define el resultado.</p><a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20saber%20m%C3%A1s%20sobre%20sus%20servicios." class="btn-gold" style="font-size:0.78rem;padding:13px 26px;" target="_blank">Consultá sin cargo →</a></div>
     </div>
-
     <div class="services-grid reveal">
-      <div class="srv-card">
-        <div class="srv-num">Servicio 01</div>
-        <div class="srv-icon">⚙️</div>
-        <h3>Implementación de ERP</h3>
-        <p>Selección, parametrización y puesta a punto de sistemas de gestión empresarial. Migración de datos históricos y capacitación de tu equipo para una adopción fluida.</p>
-        <a href="erp.html" class="srv-more">Saber más →</a>
-      </div>
-      <div class="srv-card">
-        <div class="srv-num">Servicio 02</div>
-        <div class="srv-icon">📒</div>
-        <h3>Gestión Contable, Impositiva y Auditoría</h3>
-        <p>Liquidación de impuestos nacionales y provinciales, armado y presentación de estados contables, auditoría interna y planificación fiscal estratégica.</p>
-        <a href="contable.html" class="srv-more">Saber más →</a>
-      </div>
-      <div class="srv-card">
-        <div class="srv-num">Servicio 03</div>
-        <div class="srv-icon">🔄</div>
-        <h3>Automatización de Procesos</h3>
-        <p>Diseño de circuitos administrativos eficientes para eliminar tareas repetitivas. Cada proceso se analiza a medida — no automatizamos lo que primero no entendemos.</p>
-        <a href="automatizacion.html" class="srv-more">Saber más →</a>
-      </div>
-      <div class="srv-card">
-        <div class="srv-num">Servicio 04</div>
-        <div class="srv-icon">🏭</div>
-        <h3>Sistemas de Costos</h3>
-        <p>Diseño e implementación de estructuras de costos para que sepas exactamente cuánto te cuesta producir o prestar cada servicio y cuál es tu margen real.</p>
-        <a href="costos.html" class="srv-more">Saber más →</a>
-      </div>
-      <div class="srv-card">
-        <div class="srv-num">Servicio 05</div>
-        <div class="srv-icon">📈</div>
-        <h3>Tableros de Control y Reportes</h3>
-        <p>Dashboards financieros y operativos en tiempo real. La información clave de tu negocio disponible en un clic, sin depender de que alguien te arme un Excel.</p>
-        <a href="tableros.html" class="srv-more">Saber más →</a>
-      </div>
-      <div class="srv-card">
-        <div class="srv-num">Servicio 06</div>
-        <div class="srv-icon">🎓</div>
-        <h3>Soporte y Capacitación</h3>
-        <p>Acompañamiento continuo post-implementación. Capacitamos a tu equipo y resolvemos dudas operativas para que el sistema funcione bien desde adentro hacia afuera.</p>
-        <a href="soporte.html" class="srv-more">Saber más →</a>
-      </div>
+      <div class="srv-card"><div class="srv-num">Servicio 01</div><div class="srv-icon">⚙️</div><h3>Implementación de ERP</h3><p>Selección, parametrización y puesta a punto de sistemas de gestión empresarial. Migración de datos históricos y capacitación de tu equipo para una adopción fluida.</p><a href="/ledgix/erp.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 02</div><div class="srv-icon">📒</div><h3>Gestión Contable, Impositiva y Auditoría</h3><p>Liquidación de impuestos nacionales y provinciales, armado y presentación de estados contables, auditoría interna y planificación fiscal estratégica.</p><a href="/ledgix/contable.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 03</div><div class="srv-icon">🔄</div><h3>Automatización de Procesos</h3><p>Diseño de circuitos administrativos eficientes para eliminar tareas repetitivas. Cada proceso se analiza a medida — no automatizamos lo que primero no entendemos.</p><a href="/ledgix/automatizacion.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 04</div><div class="srv-icon">🏭</div><h3>Sistemas de Costos</h3><p>Diseño e implementación de estructuras de costos para que sepas exactamente cuánto te cuesta producir o prestar cada servicio y cuál es tu margen real.</p><a href="/ledgix/costos.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 05</div><div class="srv-icon">📈</div><h3>Tableros de Control y Reportes</h3><p>Dashboards financieros y operativos en tiempo real. La información clave de tu negocio disponible en un clic, sin depender de que alguien te arme un Excel.</p><a href="/ledgix/tableros.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 06</div><div class="srv-icon">🎓</div><h3>Soporte y Capacitación</h3><p>Acompañamiento continuo post-implementación. Capacitamos a tu equipo y resolvemos dudas operativas para que el sistema funcione bien desde adentro hacia afuera.</p><a href="/ledgix/soporte.html" class="srv-more">Saber más →</a></div>
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════ DIFERENCIAL ═══════════════════════════════════ -->
+<!-- ═══════════════════════════════════ DIFERENCIAL (sin enlaces externos) ═══════════════════════════════════ -->
 <section class="diferencial" id="diferencial">
   <div class="dif-bg-img"></div>
   <div class="container">
     <div class="dif-inner">
-      <div class="reveal-left">
-        <div class="sec-tag">Por qué Ledgix</div>
-        <h2 class="sec-title" style="color:#fff;">La brecha que nosotros cerramos.</h2>
-        <div class="dif-quote">
-          <p>"El software sin criterio contable solo automatiza el caos. Antes de implementar tecnología, ordenamos los procesos."</p>
-        </div>
-        <div class="dif-points">
-          <div class="dif-point">
-            <div class="dp-icon">✓</div>
-            <div class="dp-text"><h4>Información auditable desde el origen</h4><p>Cada transacción queda registrada con trazabilidad total. Minimizamos el riesgo fiscal y simplificamos la auditoría.</p></div>
-          </div>
-          <div class="dif-point">
-            <div class="dp-icon">✓</div>
-            <div class="dp-text"><h4>Un solo interlocutor para todo</h4><p>Sin coordinar entre múltiples proveedores. La parte tecnológica y la contable están integradas bajo el mismo techo.</p></div>
-          </div>
-          <div class="dif-point">
-            <div class="dp-icon">✓</div>
-            <div class="dp-text"><h4>Foco exclusivo en PyMEs argentinas</h4><p>Conocemos el ecosistema impositivo local, las exigencias de AFIP y la realidad operativa de la empresa mediana nacional.</p></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="dif-right reveal-right">
-        <div class="profile-card">
-          <div class="pc-img">💼</div>
-          <div class="pc-body">
-            <div class="pc-label">Perfil 01</div>
-            <div class="pc-title">Ciencias Económicas</div>
-            <div class="pc-desc">Formación en Contabilidad, Auditoría, Costos y Gestión Impositiva. Hablamos el idioma de los números, AFIP, y las normativas contables vigentes.</div>
-          </div>
-        </div>
-        <div class="profile-card">
-          <div class="pc-img">💻</div>
-          <div class="pc-body">
-            <div class="pc-label">Perfil 02</div>
-            <div class="pc-title">Implementadores de Sistemas</div>
-            <div class="pc-desc">Conocimiento profundo de bases de datos relacionales, arquitectura de sistemas ERP y automatización de procesos. Entendemos lo que pasa detrás del botón.</div>
-          </div>
-        </div>
-        <div class="dif-stat-row">
-          <div class="dif-stat">
-            <div class="dif-stat-num">2en1</div>
-            <div class="dif-stat-lbl">Perfiles integrados en un solo equipo</div>
-          </div>
-          <div class="dif-stat">
-            <div class="dif-stat-num">360°</div>
-            <div class="dif-stat-lbl">Visión del negocio: ops, costos y finanzas</div>
-          </div>
-          <div class="dif-stat">
-            <div class="dif-stat-num">PyME</div>
-            <div class="dif-stat-lbl">Foco exclusivo en empresa mediana argentina</div>
-          </div>
-        </div>
-      </div>
+      <div class="reveal-left"><div class="sec-tag">Por qué Ledgix</div><h2 class="sec-title" style="color:#fff;">La brecha que nosotros cerramos.</h2><div class="dif-quote"><p>"El software sin criterio contable solo automatiza el caos. Antes de implementar tecnología, ordenamos los procesos."</p></div><div class="dif-points"><div class="dif-point"><div class="dp-icon">✓</div><div class="dp-text"><h4>Información auditable desde el origen</h4><p>Cada transacción queda registrada con trazabilidad total. Minimizamos el riesgo fiscal y simplificamos la auditoría.</p></div></div><div class="dif-point"><div class="dp-icon">✓</div><div class="dp-text"><h4>Un solo interlocutor para todo</h4><p>Sin coordinar entre múltiples proveedores. La parte tecnológica y la contable están integradas bajo el mismo techo.</p></div></div><div class="dif-point"><div class="dp-icon">✓</div><div class="dp-text"><h4>Foco exclusivo en PyMEs argentinas</h4><p>Conocemos el ecosistema impositivo local, las exigencias de AFIP y la realidad operativa de la empresa mediana nacional.</p></div></div></div></div>
+      <div class="dif-right reveal-right"><div class="profile-card"><div class="pc-img">💼</div><div class="pc-body"><div class="pc-label">Perfil 01</div><div class="pc-title">Ciencias Económicas</div><div class="pc-desc">Formación en Contabilidad, Auditoría, Costos y Gestión Impositiva. Hablamos el idioma de los números, AFIP, y las normativas contables vigentes.</div></div></div><div class="profile-card"><div class="pc-img">💻</div><div class="pc-body"><div class="pc-label">Perfil 02</div><div class="pc-title">Implementadores de Sistemas</div><div class="pc-desc">Conocimiento profundo de bases de datos relacionales, arquitectura de sistemas ERP y automatización de procesos. Entendemos lo que pasa detrás del botón.</div></div></div><div class="dif-stat-row"><div class="dif-stat"><div class="dif-stat-num">2en1</div><div class="dif-stat-lbl">Perfiles integrados en un solo equipo</div></div><div class="dif-stat"><div class="dif-stat-num">360°</div><div class="dif-stat-lbl">Visión del negocio: ops, costos y finanzas</div></div><div class="dif-stat"><div class="dif-stat-num">PyME</div><div class="dif-stat-lbl">Foco exclusivo en empresa mediana argentina</div></div></div></div>
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════ PROCESO ═══════════════════════════════════ -->
+<!-- ═══════════════════════════════════ PROCESO (sin enlaces) ═══════════════════════════════════ -->
 <section class="proceso" id="proceso">
-  <div class="container">
-    <div class="proceso-head reveal">
-      <div class="sec-tag">Metodología</div>
-      <h2 class="sec-title">Un proceso claro, sin sorpresas.</h2>
-      <p class="sec-sub">Cada proyecto comienza con un diagnóstico honesto. Nunca implementamos tecnología sobre procesos que primero no entendemos y ordenamos.</p>
-    </div>
-    <div class="proceso-track reveal">
-      <div class="step">
-        <div class="step-circle">🔍</div>
-        <div class="step-num">Paso 01</div>
-        <h4>Diagnóstico Operativo</h4>
-        <p>Analizamos cómo trabaja tu empresa: procesos, sistemas actuales, flujo de información y necesidades reales. Sin suposiciones.</p>
-      </div>
-      <div class="step">
-        <div class="step-circle">🗺️</div>
-        <div class="step-num">Paso 02</div>
-        <h4>Diseño de la Solución</h4>
-        <p>Proponemos un plan a medida con las herramientas y los procesos más adecuados para tu realidad y tu presupuesto.</p>
-      </div>
-      <div class="step">
-        <div class="step-circle">⚡</div>
-        <div class="step-num">Paso 03</div>
-        <h4>Implementación</h4>
-        <p>Ejecutamos el proyecto, parametrizamos el sistema y migramos la información con control total de cada etapa.</p>
-      </div>
-      <div class="step">
-        <div class="step-circle">🔄</div>
-        <div class="step-num">Paso 04</div>
-        <h4>Soporte Continuo</h4>
-        <p>Acompañamos la operación con soporte, reportes periódicos y mejoras continuas a medida que tu empresa crece.</p>
-      </div>
-    </div>
-  </div>
+  <div class="container"><div class="proceso-head reveal"><div class="sec-tag">Metodología</div><h2 class="sec-title">Un proceso claro, sin sorpresas.</h2><p class="sec-sub">Cada proyecto comienza con un diagnóstico honesto. Nunca implementamos tecnología sobre procesos que primero no entendemos y ordenamos.</p></div><div class="proceso-track reveal"><div class="step"><div class="step-circle">🔍</div><div class="step-num">Paso 01</div><h4>Diagnóstico Operativo</h4><p>Analizamos cómo trabaja tu empresa: procesos, sistemas actuales, flujo de información y necesidades reales. Sin suposiciones.</p></div><div class="step"><div class="step-circle">🗺️</div><div class="step-num">Paso 02</div><h4>Diseño de la Solución</h4><p>Proponemos un plan a medida con las herramientas y los procesos más adecuados para tu realidad y tu presupuesto.</p></div><div class="step"><div class="step-circle">⚡</div><div class="step-num">Paso 03</div><h4>Implementación</h4><p>Ejecutamos el proyecto, parametrizamos el sistema y migramos la información con control total de cada etapa.</p></div><div class="step"><div class="step-circle">🔄</div><div class="step-num">Paso 04</div><h4>Soporte Continuo</h4><p>Acompañamos la operación con soporte, reportes periódicos y mejoras continuas a medida que tu empresa crece.</p></div></div></div>
 </section>
 
-
-<!-- ═══════════════════════════════════ PORTAL ═══════════════════════════════════ -->
+<!-- ═══════════════════════════════════ PORTAL (sin enlaces externos a páginas) ═══════════════════════════════════ -->
 <section class="portal" id="portal">
-  <div class="container">
-    <div class="portal-layout">
-      <div class="reveal-left">
-        <div class="sec-tag">Clientes activos</div>
-        <h2 class="sec-title">Tu gestión centralizada, sin caos.</h2>
-        <p class="sec-sub">Eliminamos el WhatsApp desordenado y el mail interminable. Todo en un solo lugar, ordenado y con seguimiento.</p>
-        <div class="portal-features">
-          <div class="pf-item">
-            <div class="pf-icon">📂</div>
-            <div class="pf-body"><h4>Carga de documentación mensual</h4><p>Subí tus facturas, retenciones y comprobantes en un clic, de forma segura y sin que se pierda nada.</p></div>
-          </div>
-          <div class="pf-item">
-            <div class="pf-icon">🎫</div>
-            <div class="pf-body"><h4>Sistema de tickets de consulta</h4><p>Elevá tus consultas contables o de sistemas. Cada requerimiento tiene número, estado y tiempo de respuesta garantizado.</p></div>
-          </div>
-          <div class="pf-item">
-            <div class="pf-icon">📅</div>
-            <div class="pf-body"><h4>Agenda de reuniones online</h4><p>Coordiná reuniones de seguimiento con tu consultor asignado directamente desde el portal, sin idas y vueltas.</p></div>
-          </div>
-        </div>
-        <div class="portal-action">
-          <a href="mailto:ledgix.ar@gmail.com?subject=Solicitud%20de%20acceso%20al%20portal%20Ledgix" class="btn-gold" style="font-size:0.82rem;padding:14px 28px;">
-            📩 Solicitar acceso
-          </a>
-          <a href="https://wa.me/5491161512205" class="btn-ghost" style="font-size:0.82rem;padding:14px 28px;background:transparent;color:var(--navy);border-color:rgba(15,37,87,0.25);" target="_blank">
-            💬 Consultar por WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <div class="reveal-right">
-        <div class="browser">
-          <div class="browser-bar">
-            <div class="bd r"></div><div class="bd y"></div><div class="bd g"></div>
-            <div class="browser-url">ledgix.com.ar/portal — Panel de Gestión</div>
-          </div>
-          <div class="browser-body">
-            <div class="b-section-title">Estado de cuenta</div>
-            <div class="b-pill-row">
-              <div class="b-pill pill-green">✓ Activo</div>
-              <div class="b-pill pill-amber">⏳ 2 tickets abiertos</div>
-              <div class="b-pill pill-red">📅 Vto. próximo</div>
-            </div>
-            <div class="b-ticket">
-              <div class="bt-left">
-                <strong>Consulta #031 — Retención IIBB ARBA</strong>
-                <span>Recibido hace 1 h · Asignado a consultor</span>
-              </div>
-              <div class="bt-status st-pending">En proceso</div>
-            </div>
-            <div class="b-ticket">
-              <div class="bt-left">
-                <strong>DDJJ IVA — Junio 2026</strong>
-                <span>📎 Documentación completa · Lista para presentar</span>
-              </div>
-              <div class="bt-status st-ok">Listo</div>
-            </div>
-            <div class="b-chart">
-              <div class="b-section-title">Evolución de resultados</div>
-              <div class="chart-bars">
-                <div class="bar bar-1"></div>
-                <div class="bar bar-2"></div>
-                <div class="bar bar-3"></div>
-                <div class="bar bar-4"></div>
-                <div class="bar bar-5"></div>
-                <div class="bar bar-6"></div>
-              </div>
-              <div class="chart-label">Ene · Feb · Mar · Abr · May · Jun</div>
-            </div>
-            <div class="b-upload">
-              <span class="b-upload-icon">📎</span>
-              Arrastrá tu documentación aquí o hacé clic para subir
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="container"><div class="portal-layout"><div class="reveal-left"><div class="sec-tag">Clientes activos</div><h2 class="sec-title">Tu gestión centralizada, sin caos.</h2><p class="sec-sub">Eliminamos el WhatsApp desordenado y el mail interminable. Todo en un solo lugar, ordenado y con seguimiento.</p><div class="portal-features"><div class="pf-item"><div class="pf-icon">📂</div><div class="pf-body"><h4>Carga de documentación mensual</h4><p>Subí tus facturas, retenciones y comprobantes en un clic, de forma segura y sin que se pierda nada.</p></div></div><div class="pf-item"><div class="pf-icon">🎫</div><div class="pf-body"><h4>Sistema de tickets de consulta</h4><p>Elevá tus consultas contables o de sistemas. Cada requerimiento tiene número, estado y tiempo de respuesta garantizado.</p></div></div><div class="pf-item"><div class="pf-icon">📅</div><div class="pf-body"><h4>Agenda de reuniones online</h4><p>Coordiná reuniones de seguimiento con tu consultor asignado directamente desde el portal, sin idas y vueltas.</p></div></div></div><div class="portal-action"><a href="mailto:ledgix.ar@gmail.com?subject=Solicitud%20de%20acceso%20al%20portal%20Ledgix" class="btn-gold" style="font-size:0.82rem;padding:14px 28px;">📩 Solicitar acceso</a><a href="https://wa.me/5491161512205" class="btn-ghost" style="font-size:0.82rem;padding:14px 28px;background:transparent;color:var(--navy);border-color:rgba(15,37,87,0.25);" target="_blank">💬 Consultar por WhatsApp</a></div></div><div class="reveal-right"><div class="browser"><div class="browser-bar"><div class="bd r"></div><div class="bd y"></div><div class="bd g"></div><div class="browser-url">ledgix.com.ar/portal — Panel de Gestión</div></div><div class="browser-body"><div class="b-section-title">Estado de cuenta</div><div class="b-pill-row"><div class="b-pill pill-green">✓ Activo</div><div class="b-pill pill-amber">⏳ 2 tickets abiertos</div><div class="b-pill pill-red">📅 Vto. próximo</div></div><div class="b-ticket"><div class="bt-left"><strong>Consulta #031 — Retención IIBB ARBA</strong><span>Recibido hace 1 h · Asignado a consultor</span></div><div class="bt-status st-pending">En proceso</div></div><div class="b-ticket"><div class="bt-left"><strong>DDJJ IVA — Junio 2026</strong><span>📎 Documentación completa · Lista para presentar</span></div><div class="bt-status st-ok">Listo</div></div><div class="b-chart"><div class="b-section-title">Evolución de resultados</div><div class="chart-bars"><div class="bar bar-1"></div><div class="bar bar-2"></div><div class="bar bar-3"></div><div class="bar bar-4"></div><div class="bar bar-5"></div><div class="bar bar-6"></div></div><div class="chart-label">Ene · Feb · Mar · Abr · May · Jun</div></div><div class="b-upload"><span class="b-upload-icon">📎</span>Arrastrá tu documentación aquí o hacé clic para subir</div></div></div></div></div></div>
 </section>
-
 
 <!-- ═══════════════════════════════════ CTA ═══════════════════════════════════ -->
 <section class="cta-section" id="contacto">
   <div class="cta-bg"></div>
   <div class="cta-overlay"></div>
-  <div class="container cta-inner reveal">
-    <div class="sec-tag">Empezá hoy</div>
-    <h2 class="sec-title">¿Listo para ordenar<br/>tu empresa de verdad?</h2>
-    <p class="sec-sub">Empezamos con un diagnóstico operativo sin cargo. Sin compromisos, sin letra chica. Solo una reunión honesta para entender tu negocio y ver si podemos ayudarte.</p>
-    <div class="cta-btns">
-      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20operativo%20sin%20cargo." class="btn-wsp" target="_blank">
-        💬 WhatsApp directo
-      </a>
-      <a href="mailto:ledgix.ar@gmail.com?subject=Consulta%20desde%20la%20web%20Ledgix" class="btn-mail">
-        ✉️ Enviar un mail
-      </a>
-    </div>
-  </div>
+  <div class="container cta-inner reveal"><div class="sec-tag">Empezá hoy</div><h2 class="sec-title">¿Listo para ordenar<br/>tu empresa de verdad?</h2><p class="sec-sub">Empezamos con un diagnóstico operativo sin cargo. Sin compromisos, sin letra chica. Solo una reunión honesta para entender tu negocio y ver si podemos ayudarte.</p><div class="cta-btns"><a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20operativo%20sin%20cargo." class="btn-wsp" target="_blank">💬 WhatsApp directo</a><a href="mailto:ledgix.ar@gmail.com?subject=Consulta%20desde%20la%20web%20Ledgix" class="btn-mail">✉️ Enviar un mail</a></div></div>
 </section>
 
-
-<!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
+<!-- ═══════════════════════════════════ FOOTER (enlaces a #servicios, no a páginas) ═══════════════════════════════════ -->
 <footer>
   <div class="footer-grid">
-    <div class="footer-brand">
-      <img src="logo_LEDGIX.jpeg" alt="Ledgix"/>
-      <p>Consultora especializada en sistemas de información financiera y gestión contable para PyMEs argentinas. Tecnología y contabilidad integradas.</p>
-    </div>
-    <div class="footer-col">
-      <h5>Servicios</h5>
-      <ul>
-        <li><a href="#servicios">Implementación ERP</a></li>
-        <li><a href="#servicios">Gestión Contable e Impositiva</a></li>
-        <li><a href="#servicios">Sistemas de Costos</a></li>
-        <li><a href="#servicios">Automatización de Procesos</a></li>
-        <li><a href="#servicios">Tableros de Control</a></li>
-        <li><a href="#servicios">Soporte y Capacitación</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Contacto</h5>
-      <div class="footer-contact-item">
-        <div class="fci-icon">📍</div>
-        <div class="fci-text">Buenos Aires, Argentina</div>
-      </div>
-      <div class="footer-contact-item">
-        <div class="fci-icon">💬</div>
-        <div class="fci-text">+54 11 6151-2205</div>
-      </div>
-      <div class="footer-contact-item">
-        <div class="fci-icon">✉️</div>
-        <div class="fci-text">ledgix.ar@gmail.com</div>
-      </div>
-      <div class="footer-contact-item">
-        <div class="fci-icon">🌐</div>
-        <div class="fci-text">ledgix.com.ar</div>
-      </div>
-    </div>
+    <div class="footer-brand"><img src="logo_LEDGIX.jpeg" alt="Ledgix"/><p>Consultora especializada en sistemas de información financiera y gestión contable para PyMEs argentinas. Tecnología y contabilidad integradas.</p></div>
+    <div class="footer-col"><h5>Servicios</h5><ul><li><a href="#servicios">Implementación ERP</a></li><li><a href="#servicios">Gestión Contable e Impositiva</a></li><li><a href="#servicios">Sistemas de Costos</a></li><li><a href="#servicios">Automatización de Procesos</a></li><li><a href="#servicios">Tableros de Control</a></li><li><a href="#servicios">Soporte y Capacitación</a></li></ul></div>
+    <div class="footer-col"><h5>Contacto</h5><div class="footer-contact-item"><div class="fci-icon">📍</div><div class="fci-text">Buenos Aires, Argentina</div></div><div class="footer-contact-item"><div class="fci-icon">💬</div><div class="fci-text">+54 11 6151-2205</div></div><div class="footer-contact-item"><div class="fci-icon">✉️</div><div class="fci-text">ledgix.ar@gmail.com</div></div><div class="footer-contact-item"><div class="fci-icon">🌐</div><div class="fci-text">ledgix.com.ar</div></div></div>
   </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 LEDGIX. Todos los derechos reservados.</div>
-    <div id="google_translate_element"></div>
-  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2026 LEDGIX. Todos los derechos reservados.</div><div id="google_translate_element"></div></div>
 </footer>
-
 
 <script>
 // Navbar scroll
