@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Gestión Contable, Impositiva y Auditoría | LEDGIX</title>
+<meta name="description" content="Liquidación de impuestos, auditoría contable y armado de balances para PyMEs, comercios y emprendedores en Argentina. Cumplimiento AFIP garantizado."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F2557;--navy-mid:#1B3A8C;--green:#1A8C3A;--green-light:#22a847;
+  --bordo:#8B1A1A;--bordo-light:#a82020;--gold:#C9A84C;
+  --white:#FFFFFF;--off:#F7F8FC;--gray:#64748B;--dark:#070E24;
+  --border:rgba(15,37,87,0.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden}
+
+/* ── NAVBAR ── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200;transition:background 0.4s,box-shadow 0.4s;padding:0 6%}
+.navbar.solid{background:rgba(7,14,36,0.97);backdrop-filter:blur(20px);box-shadow:0 2px 40px rgba(0,0,0,0.25)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:80px}
+.nav-logo img{height:44px;width:auto;display:block}
+.nav-menu{display:flex;align-items:center;gap:8px;list-style:none}
+.nav-menu>li{position:relative}
+.nav-menu>li>a{display:flex;align-items:center;gap:6px;text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.80);padding:10px 16px;border-radius:6px;transition:color 0.2s,background 0.2s}
+.nav-menu>li>a:hover{color:#fff;background:rgba(255,255,255,0.07)}
+.nav-menu>li>a .chevron{font-size:0.6rem;transition:transform 0.2s}
+.nav-menu>li:hover>a .chevron{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 8px);left:0;background:var(--dark);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px;min-width:260px;opacity:0;visibility:hidden;transform:translateY(8px);transition:all 0.25s ease;box-shadow:0 24px 60px rgba(0,0,0,0.4)}
+.nav-menu>li:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown a{display:flex;align-items:flex-start;gap:12px;text-decoration:none;padding:12px 14px;border-radius:8px;transition:background 0.15s}
+.dropdown a:hover{background:rgba(255,255,255,0.06)}
+.drop-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;margin-top:1px}
+.drop-text strong{display:block;font-size:0.84rem;font-weight:600;color:#fff;margin-bottom:2px}
+.drop-text span{font-size:0.76rem;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.4}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-portal{font-size:0.78rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;padding:9px 18px;border-radius:6px;border:1px solid rgba(255,255,255,0.18);transition:all 0.2s}
+.nav-portal:hover{color:#fff;border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.06)}
+.nav-cta-btn{font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#fff;text-decoration:none;padding:10px 22px;border-radius:6px;background:var(--bordo);transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 16px rgba(139,26,26,0.4)}
+.nav-cta-btn:hover{background:var(--bordo-light);transform:translateY(-1px)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:210}
+.nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-drawer{display:none;position:fixed;top:80px;left:0;right:0;bottom:0;background:rgba(7,14,36,0.98);backdrop-filter:blur(20px);z-index:190;overflow-y:auto;padding:24px 6% 40px;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1)}
+.mobile-drawer.open{transform:translateX(0)}
+.mobile-nav-links{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:32px}
+.mobile-nav-links li a{display:block;text-decoration:none;font-size:1.1rem;font-weight:500;color:rgba(255,255,255,0.75);padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.mobile-nav-links li a:hover{color:#fff}
+.mobile-services-label{font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:20px 0 12px}
+.mobile-services-grid{display:flex;flex-direction:column;gap:4px;margin-bottom:32px}
+.mobile-services-grid a{display:flex;align-items:center;gap:12px;text-decoration:none;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);transition:background 0.15s}
+.mobile-services-grid a:hover{background:rgba(255,255,255,0.08)}
+.mobile-services-grid a span.icon{font-size:1.1rem;width:32px;text-align:center}
+.mobile-services-grid a span.label{font-size:0.86rem;font-weight:400;color:rgba(255,255,255,0.7)}
+.mobile-actions{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.mobile-actions a{text-align:center;padding:15px;border-radius:8px;font-size:0.88rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;text-decoration:none;transition:all 0.2s}
+.mobile-wsp{background:#25D366;color:#fff}
+.mobile-portal-btn{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2)}
+
+/* ── HERO ── */
+.page-hero{min-height:60vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--dark)}
+.page-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1800&q=80');background-size:cover;background-position:center 35%;opacity:0.18}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,var(--dark) 38%,rgba(7,14,36,0.80) 60%,transparent 100%),linear-gradient(to top,var(--dark) 0%,transparent 50%)}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);background-size:72px 72px}
+.page-hero-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,var(--green) 30%,var(--bordo) 70%,transparent)}
+.page-hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;padding:160px 6% 80px}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:28px}
+.breadcrumb a{text-decoration:none;font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.4);letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.breadcrumb a:hover{color:rgba(255,255,255,0.8)}
+.breadcrumb span{font-size:0.76rem;color:rgba(255,255,255,0.2)}
+.breadcrumb strong{font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.6);letter-spacing:0.06em;text-transform:uppercase}
+.page-hero-label{display:inline-flex;align-items:center;gap:10px;font-size:0.7rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.page-hero-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold)}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:700;line-height:1.1;color:#fff;margin-bottom:24px;max-width:700px}
+.page-hero h1 em{font-style:italic;color:var(--gold)}
+.page-hero-desc{font-size:1.05rem;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.62);max-width:560px;margin-bottom:44px}
+.page-hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ── BUTTONS ── */
+.btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--dark);text-decoration:none;font-size:0.84rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:6px;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 8px 32px rgba(201,168,76,0.35)}
+.btn-gold:hover{background:#d4b055;transform:translateY(-2px)}
+.btn-ghost-light{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;text-decoration:none;font-size:0.84rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:6px;border:1px solid rgba(255,255,255,0.22);transition:all 0.2s}
+.btn-ghost-light:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.06)}
+.btn-bordo{display:inline-flex;align-items:center;gap:10px;background:var(--bordo);color:#fff;text-decoration:none;font-size:0.84rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:6px;transition:background 0.2s,transform 0.15s;box-shadow:0 8px 32px rgba(139,26,26,0.3)}
+.btn-bordo:hover{background:var(--bordo-light);transform:translateY(-2px)}
+.btn-wsp{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;text-decoration:none;font-size:0.84rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:8px;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 8px 32px rgba(37,211,102,0.3)}
+.btn-wsp:hover{background:#1fb855;transform:translateY(-2px)}
+.btn-mail{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;text-decoration:none;font-size:0.84rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:16px 36px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);transition:all 0.2s}
+.btn-mail:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.07)}
+
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:0 6%}
+.sec-tag{display:inline-flex;align-items:center;gap:10px;font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--bordo);margin-bottom:18px}
+.sec-tag::before{content:'';display:block;width:28px;height:2px;background:var(--bordo);border-radius:2px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;line-height:1.12;color:var(--navy);margin-bottom:20px}
+.sec-sub{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray);max-width:560px}
+
+/* ── PROPUESTA DE VALOR ── */
+.value-prop{padding:100px 0;background:var(--off)}
+.value-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.value-image{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(15,37,87,0.15)}
+.value-image img{width:100%;height:480px;object-fit:cover;display:block}
+.value-badge{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(7,14,36,0.90);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.10);border-radius:12px;padding:20px 22px;display:flex;align-items:flex-start;gap:14px}
+.vb-icon{font-size:1.6rem;flex-shrink:0}
+.vb-text strong{display:block;font-size:0.9rem;font-weight:600;color:#fff;margin-bottom:4px}
+.vb-text span{font-size:0.80rem;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.5}
+.value-right{}
+.value-lead{font-size:1.08rem;font-weight:400;line-height:1.8;color:var(--navy);margin-bottom:20px}
+.value-body{font-size:0.95rem;font-weight:300;line-height:1.85;color:var(--gray);margin-bottom:36px}
+.value-pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pillar{padding:18px 20px;background:var(--white);border:1px solid var(--border);border-radius:12px;border-top:3px solid var(--navy);transition:box-shadow 0.2s,transform 0.2s}
+.pillar:hover{box-shadow:0 8px 28px rgba(15,37,87,0.08);transform:translateY(-3px)}
+.pillar-icon{font-size:1.4rem;margin-bottom:10px;display:block}
+.pillar h4{font-size:0.88rem;font-weight:600;color:var(--navy);margin-bottom:4px}
+.pillar p{font-size:0.80rem;font-weight:300;line-height:1.55;color:var(--gray)}
+
+/* ── SERVICIOS DETALLE ── */
+.services-detail{padding:100px 0;background:var(--white)}
+.services-detail-head{text-align:center;max-width:620px;margin:0 auto 72px}
+.services-detail-head .sec-tag{justify-content:center}
+.services-detail-head .sec-sub{margin:0 auto}
+
+.srv-accordion{display:flex;flex-direction:column;gap:16px;max-width:880px;margin:0 auto}
+.srv-block{border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color 0.2s,box-shadow 0.2s}
+.srv-block:hover{border-color:rgba(15,37,87,0.22);box-shadow:0 8px 32px rgba(15,37,87,0.07)}
+.srv-block-header{display:flex;align-items:center;gap:20px;padding:28px 32px;cursor:pointer;transition:background 0.15s;user-select:none}
+.srv-block-header:hover{background:var(--off)}
+.srv-block.open .srv-block-header{background:var(--off)}
+.srv-block-icon{width:52px;height:52px;border-radius:12px;background:rgba(15,37,87,0.06);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;transition:background 0.2s}
+.srv-block.open .srv-block-icon{background:var(--navy)}
+.srv-block-title{flex:1}
+.srv-block-title h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.srv-block-title span{font-size:0.82rem;font-weight:300;color:var(--gray)}
+.srv-block-arrow{font-size:0.8rem;color:var(--gray);transition:transform 0.3s;flex-shrink:0}
+.srv-block.open .srv-block-arrow{transform:rotate(180deg)}
+.srv-block-body{max-height:0;overflow:hidden;transition:max-height 0.45s ease}
+.srv-block.open .srv-block-body{max-height:600px}
+.srv-block-inner{padding:0 32px 32px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.srv-block-desc{font-size:0.9rem;font-weight:300;line-height:1.8;color:var(--gray)}
+.srv-block-list{display:flex;flex-direction:column;gap:10px}
+.sbl-item{display:flex;align-items:flex-start;gap:10px;font-size:0.86rem;font-weight:300;color:var(--gray);line-height:1.5}
+.sbl-check{color:var(--green);flex-shrink:0;margin-top:2px;font-size:0.85rem}
+
+/* ── AFIP STRIP ── */
+.afip-strip{padding:60px 0;background:var(--navy);position:relative;overflow:hidden}
+.afip-strip::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,168,76,0.10),transparent 60%);pointer-events:none}
+.afip-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.afip-left h3{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:8px}
+.afip-left p{font-size:0.92rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.6);max-width:560px}
+.afip-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.afip-badge{font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:7px 16px;border-radius:100px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.6);transition:all 0.2s}
+.afip-badge:hover{background:rgba(255,255,255,0.12);color:#fff}
+
+/* ── PARA QUIÉN ── */
+.for-who{padding:100px 0;background:var(--off)}
+.for-who-head{text-align:center;max-width:620px;margin:0 auto 64px}
+.for-who-head .sec-tag{justify-content:center}
+.for-who-head .sec-sub{margin:0 auto}
+.profiles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.profile-tile{position:relative;border-radius:16px;overflow:hidden;height:300px;cursor:default}
+.profile-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
+.profile-tile:hover img{transform:scale(1.04)}
+.profile-tile-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,14,36,0.92) 0%,rgba(7,14,36,0.25) 55%,transparent 100%)}
+.profile-tile-content{position:absolute;bottom:0;left:0;right:0;padding:26px 22px}
+.pt-icon{font-size:1.6rem;margin-bottom:8px;display:block}
+.pt-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:5px}
+.pt-desc{font-size:0.81rem;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.62)}
+.pt-tag{position:absolute;top:18px;right:18px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.35);border-radius:100px;padding:5px 14px;font-size:0.67rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)}
+
+/* ── DIFERENCIAL CONTABLE ── */
+.dif-contable{padding:100px 0;background:var(--dark);position:relative;overflow:hidden}
+.dif-contable::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(26,140,58,0.06),transparent 55%),radial-gradient(ellipse at 80% 80%,rgba(139,26,26,0.08),transparent 50%);pointer-events:none}
+.dif-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);background-size:72px 72px}
+.dif-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.dif-left .sec-tag{color:var(--gold)}
+.dif-left .sec-tag::before{background:var(--gold)}
+.dif-left .sec-title{color:#fff}
+.dif-left .sec-sub{color:rgba(255,255,255,0.55);margin-bottom:36px}
+.dif-quote{margin:32px 0;padding:22px 26px;border-left:3px solid var(--gold);background:rgba(201,168,76,0.06);border-radius:0 10px 10px 0}
+.dif-quote p{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.7;color:rgba(255,255,255,0.75)}
+.dif-points{display:flex;flex-direction:column;gap:16px}
+.dif-point{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;transition:background 0.2s}
+.dif-point:hover{background:rgba(255,255,255,0.07)}
+.dp-icon{width:38px;height:38px;border-radius:9px;background:rgba(26,140,58,0.15);border:1px solid rgba(26,140,58,0.25);display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+.dp-text h4{font-size:0.88rem;font-weight:600;color:#fff;margin-bottom:3px}
+.dp-text p{font-size:0.81rem;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.48)}
+.dif-right{display:flex;flex-direction:column;gap:16px}
+.stat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:28px 26px;transition:background 0.2s,border-color 0.2s}
+.stat-card:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.18)}
+.stat-card-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:8px}
+.stat-card h4{font-size:0.92rem;font-weight:600;color:#fff;margin-bottom:6px}
+.stat-card p{font-size:0.82rem;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.48)}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* ── MODALIDADES ── */
+.modalities{padding:100px 0;background:var(--off)}
+.mod-head{text-align:center;max-width:580px;margin:0 auto 64px}
+.mod-head .sec-tag{justify-content:center}
+.mod-head .sec-sub{margin:0 auto}
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.mod-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:44px 36px;position:relative;overflow:hidden;transition:box-shadow 0.3s,transform 0.3s}
+.mod-card:hover{box-shadow:0 20px 60px rgba(15,37,87,0.10);transform:translateY(-4px)}
+.mod-card.featured{background:var(--navy);border-color:transparent}
+.mod-card.featured::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(201,168,76,0.12),transparent 60%);pointer-events:none}
+.mod-badge{display:inline-block;font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:24px}
+.badge-outline{background:rgba(15,37,87,0.06);color:var(--navy);border:1px solid var(--border)}
+.badge-gold{background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.35)}
+.mod-icon{font-size:2.2rem;margin-bottom:16px;display:block}
+.mod-card h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin-bottom:12px}
+.mod-card.featured h3{color:#fff}
+.mod-card:not(.featured) h3{color:var(--navy)}
+.mod-card p{font-size:0.9rem;font-weight:300;line-height:1.75;margin-bottom:24px}
+.mod-card.featured p{color:rgba(255,255,255,0.6)}
+.mod-card:not(.featured) p{color:var(--gray)}
+.mod-list{display:flex;flex-direction:column;gap:10px}
+.ml-item{display:flex;align-items:flex-start;gap:10px;font-size:0.86rem;font-weight:300;line-height:1.5}
+.mod-card.featured .ml-item{color:rgba(255,255,255,0.65)}
+.mod-card:not(.featured) .ml-item{color:var(--gray)}
+.ml-check{flex-shrink:0;font-size:0.8rem;margin-top:2px}
+.mod-card.featured .ml-check{color:var(--gold)}
+.mod-card:not(.featured) .ml-check{color:var(--green)}
+
+/* ── FAQ ── */
+.faq{padding:100px 0;background:var(--white)}
+.faq-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.faq-list{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.faq-item{border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color 0.2s}
+.faq-item.open{border-color:rgba(15,37,87,0.25)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;cursor:pointer;font-size:0.92rem;font-weight:500;color:var(--navy);transition:background 0.15s;user-select:none}
+.faq-q:hover{background:var(--off)}
+.faq-arrow{font-size:0.75rem;color:var(--gray);transition:transform 0.3s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;font-size:0.88rem;font-weight:300;line-height:1.75;color:var(--gray);padding:0 22px}
+.faq-item.open .faq-a{max-height:300px;padding:0 22px 20px}
+
+/* ── CTA ── */
+.cta-section{padding:120px 0;background:var(--navy);position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=1600&q=80');background-size:cover;background-position:center;opacity:0.07}
+.cta-overlay{position:absolute;inset:0;background:linear-gradient(135deg,var(--navy) 50%,rgba(139,26,26,0.35) 100%)}
+.cta-inner{position:relative;z-index:1;text-align:center}
+.cta-inner .sec-tag{justify-content:center;color:var(--gold)}
+.cta-inner .sec-tag::before{background:var(--gold)}
+.cta-inner .sec-title{color:#fff;margin:0 auto 20px}
+.cta-inner .sec-sub{color:rgba(255,255,255,0.6);margin:0 auto 52px}
+.cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* ── OTROS SERVICIOS ── */
+.other-services{padding:80px 0;background:var(--off);border-top:1px solid var(--border)}
+.other-head{text-align:center;margin-bottom:48px}
+.other-head .sec-tag{justify-content:center}
+.other-head p{font-size:0.9rem;font-weight:300;color:var(--gray);margin-top:8px}
+.other-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.other-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 20px;text-align:center;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:10px;transition:box-shadow 0.2s,transform 0.2s,border-color 0.2s}
+.other-card:hover{box-shadow:0 8px 28px rgba(15,37,87,0.08);transform:translateY(-3px);border-color:rgba(15,37,87,0.2)}
+.other-card-icon{font-size:1.6rem}
+.other-card span{font-size:0.8rem;font-weight:500;color:var(--navy);line-height:1.4;text-align:center}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:56px}
+.footer-brand img{height:40px;margin-bottom:20px}
+.footer-brand p{font-size:0.83rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.38);max-width:280px}
+.footer-col h5{font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul a{text-decoration:none;font-size:0.84rem;font-weight:300;color:rgba(255,255,255,0.45);transition:color 0.2s}
+.footer-col ul a:hover{color:rgba(255,255,255,0.85)}
+.footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+.fci-icon{font-size:0.9rem;margin-top:2px;opacity:0.6}
+.fci-text{font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.5}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:0.76rem;color:rgba(255,255,255,0.25)}
+#google_translate_element .goog-te-combo{font-size:0.76rem!important;color:rgba(255,255,255,0.45)!important;background:rgba(255,255,255,0.05)!important;border:1px solid rgba(255,255,255,0.12)!important;border-radius:6px!important;padding:5px 10px!important;outline:none}
+.goog-logo-link,.goog-te-gadget>span{display:none!important}
+.goog-te-gadget{font-size:0!important}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-right.visible{opacity:1;transform:none}
+.hero-anim{animation:fadeUp 1s ease both}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .value-layout,.dif-inner,.faq-layout{grid-template-columns:1fr}
+  .profiles-grid,.stat-row{grid-template-columns:1fr 1fr}
+  .value-pillars{grid-template-columns:1fr}
+  .other-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .afip-inner{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-menu,.nav-actions{display:none}
+  .nav-toggle{display:flex}
+  .mobile-drawer{display:block}
+  .mod-grid{grid-template-columns:1fr}
+  .profiles-grid{grid-template-columns:1fr}
+  .srv-block-inner{grid-template-columns:1fr}
+  .other-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="logo_LEDGIX.jpeg" alt="Ledgix"/></a>
+    <ul class="nav-menu">
+      <li>
+        <a href="index.html#servicios">Servicios <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="erp.html"><div class="drop-icon">⚙️</div><div class="drop-text"><strong>Implementación de ERP</strong><span>Parametrización y puesta a punto de sistemas de gestión</span></div></a>
+          <a href="contable.html"><div class="drop-icon">📒</div><div class="drop-text"><strong>Gestión Contable e Impositiva</strong><span>Liquidación de impuestos, balances y auditoría</span></div></a>
+          <a href="costos.html"><div class="drop-icon">🏭</div><div class="drop-text"><strong>Sistemas de Costos</strong><span>Estructura de costos para conocer tu rentabilidad real</span></div></a>
+          <a href="automatizacion.html"><div class="drop-icon">🔄</div><div class="drop-text"><strong>Automatización de Procesos</strong><span>Circuitos eficientes para eliminar tareas repetitivas</span></div></a>
+          <a href="tableros.html"><div class="drop-icon">📈</div><div class="drop-text"><strong>Tableros de Control</strong><span>Dashboards financieros en tiempo real</span></div></a>
+          <a href="soporte.html"><div class="drop-icon">🎓</div><div class="drop-text"><strong>Soporte y Capacitación</strong><span>Acompañamiento continuo post-implementación</span></div></a>
+        </div>
+      </li>
+      <li><a href="index.html#diferencial">Nosotros</a></li>
+      <li><a href="index.html#proceso">Metodología</a></li>
+      <li><a href="index.html#portal">Clientes</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="index.html#portal" class="nav-portal">Acceso Clientes</a>
+      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20consultar%20sobre%20gesti%C3%B3n%20contable." class="nav-cta-btn" target="_blank">Diagnóstico gratuito</a>
+    </div>
+    <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" onclick="closeMobile()">Inicio</a></li>
+    <li><a href="index.html#diferencial" onclick="closeMobile()">Nosotros</a></li>
+    <li><a href="index.html#proceso" onclick="closeMobile()">Metodología</a></li>
+    <li><a href="index.html#portal" onclick="closeMobile()">Clientes</a></li>
+    <li><a href="index.html#contacto" onclick="closeMobile()">Contacto</a></li>
+  </ul>
+  <div class="mobile-services-label">Servicios</div>
+  <div class="mobile-services-grid">
+    <a href="erp.html" onclick="closeMobile()"><span class="icon">⚙️</span><span class="label">Implementación de ERP</span></a>
+    <a href="contable.html" onclick="closeMobile()"><span class="icon">📒</span><span class="label">Gestión Contable e Impositiva</span></a>
+    <a href="costos.html" onclick="closeMobile()"><span class="icon">🏭</span><span class="label">Sistemas de Costos</span></a>
+    <a href="automatizacion.html" onclick="closeMobile()"><span class="icon">🔄</span><span class="label">Automatización de Procesos</span></a>
+    <a href="tableros.html" onclick="closeMobile()"><span class="icon">📈</span><span class="label">Tableros de Control</span></a>
+    <a href="soporte.html" onclick="closeMobile()"><span class="icon">🎓</span><span class="label">Soporte y Capacitación</span></a>
+  </div>
+  <div class="mobile-actions">
+    <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20agendar%20un%20diagn%C3%B3stico." class="mobile-wsp" target="_blank">💬 Diagnóstico sin cargo</a>
+    <a href="index.html#portal" class="mobile-portal-btn" onclick="closeMobile()">🔐 Acceso Clientes</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-accent"></div>
+  <div class="page-hero-content hero-anim">
+    <div class="breadcrumb">
+      <a href="index.html">Inicio</a><span>/</span>
+      <a href="index.html#servicios">Servicios</a><span>/</span>
+      <strong>Gestión Contable e Impositiva</strong>
+    </div>
+    <div class="page-hero-label">Servicio 02</div>
+    <h1>Contabilidad, impuestos<br/>y auditoría para tu <em>tranquilidad.</em></h1>
+    <p class="page-hero-desc">Llevamos la gestión contable e impositiva de tu empresa con precisión técnica y cumplimiento normativo. Vos te concentrás en tu negocio, nosotros en los números.</p>
+    <div class="page-hero-btns">
+      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20consultar%20sobre%20gesti%C3%B3n%20contable%20e%20impositiva." class="btn-gold" target="_blank">💬 Consultá sin cargo</a>
+      <a href="#servicios-detalle" class="btn-ghost-light">Ver servicios →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROPUESTA DE VALOR -->
+<section class="value-prop" id="que-hacemos">
+  <div class="container">
+    <div class="value-layout">
+      <div class="value-image reveal-left">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80" alt="Gestión contable profesional" loading="lazy"/>
+        <div class="value-badge">
+          <div class="vb-icon">🔒</div>
+          <div class="vb-text">
+            <strong>Cumplimiento garantizado</strong>
+            <span>Liquidaciones, declaraciones juradas y balances presentados en término y sin errores.</span>
+          </div>
+        </div>
+      </div>
+      <div class="value-right reveal-right">
+        <div class="sec-tag">Nuestro enfoque</div>
+        <h2 class="sec-title">No solo liquidamos impuestos. Gestionamos tus finanzas.</h2>
+        <p class="value-lead">La mayoría de los estudios contables reciben las facturas a fin de mes, las cargan y presentan las declaraciones. Nosotros hacemos eso y mucho más.</p>
+        <p class="value-body">Al integrar la gestión contable con la implementación tecnológica, la información de tu negocio llega a nosotros ordenada y en tiempo real desde tu propio sistema. Eso nos permite hacer un trabajo más preciso, más rápido y con mayor valor agregado para tu empresa.</p>
+        <div class="value-pillars">
+          <div class="pillar">
+            <span class="pillar-icon">📋</span>
+            <h4>Impuestos en término</h4>
+            <p>Nunca más una multa por vencimiento. Nos encargamos de cada obligación fiscal.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-icon">🔍</span>
+            <h4>Auditoría preventiva</h4>
+            <p>Detectamos inconsistencias antes de que se conviertan en problemas con AFIP.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-icon">📊</span>
+            <h4>Balances que se leen</h4>
+            <p>Estados contables claros y bien armados, útiles para bancos, inversores y socios.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-icon">🎯</span>
+            <h4>Planificación fiscal</h4>
+            <p>Analizamos tu carga impositiva y buscamos la forma más eficiente de tributar dentro de la ley.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SERVICIOS DETALLE -->
+<section class="services-detail" id="servicios-detalle">
+  <div class="container">
+    <div class="services-detail-head reveal">
+      <div class="sec-tag">En detalle</div>
+      <h2 class="sec-title">Todo lo que incluye nuestra gestión contable.</h2>
+      <p class="sec-sub">Hacé clic en cada área para ver el detalle de lo que cubrimos.</p>
+    </div>
+    <div class="srv-accordion reveal">
+
+      <div class="srv-block">
+        <div class="srv-block-header">
+          <div class="srv-block-icon">💰</div>
+          <div class="srv-block-title">
+            <h3>Impuestos Nacionales</h3>
+            <span>IVA, Ganancias, Bienes Personales y más obligaciones ante AFIP</span>
+          </div>
+          <div class="srv-block-arrow">▾</div>
+        </div>
+        <div class="srv-block-body">
+          <div class="srv-block-inner">
+            <p class="srv-block-desc">Liquidamos y presentamos todas las obligaciones impositivas nacionales en término. Desde la declaración mensual de IVA hasta el cierre anual de Ganancias. Monitoreamos los vencimientos y te avisamos con anticipación para que tengas los fondos disponibles.</p>
+            <div class="srv-block-list">
+              <div class="sbl-item"><span class="sbl-check">✓</span>Declaración jurada mensual de IVA</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Liquidación anual de Ganancias (Personas Humanas y Jurídicas)</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Bienes Personales y Patrimonio Neto</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Retenciones y percepciones sufridas y practicadas</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Libro de IVA digital (RG 3685)</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Monotributo — recategorización y seguimiento</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-block">
+        <div class="srv-block-header">
+          <div class="srv-block-icon">🏛️</div>
+          <div class="srv-block-title">
+            <h3>Impuestos Provinciales</h3>
+            <span>Ingresos Brutos, Convenio Multilateral y Rentas locales</span>
+          </div>
+          <div class="srv-block-arrow">▾</div>
+        </div>
+        <div class="srv-block-body">
+          <div class="srv-block-inner">
+            <p class="srv-block-desc">Gestionamos las obligaciones ante las agencias de recaudación provinciales. Si tu empresa opera en varias provincias, coordinamos la liquidación del Convenio Multilateral para que tributés correctamente en cada jurisdicción.</p>
+            <div class="srv-block-list">
+              <div class="sbl-item"><span class="sbl-check">✓</span>Ingresos Brutos — régimen local y Convenio Multilateral</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Retenciones de ARBA, AGIP y otras jurisdicciones</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Declaraciones ante Rentas provinciales</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Gestión de padrones de retención y percepción</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Alícuotas diferenciadas por actividad y jurisdicción</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-block">
+        <div class="srv-block-header">
+          <div class="srv-block-icon">📒</div>
+          <div class="srv-block-title">
+            <h3>Contabilidad y Registración</h3>
+            <span>Libros contables, asientos y gestión del Mayor</span>
+          </div>
+          <div class="srv-block-arrow">▾</div>
+        </div>
+        <div class="srv-block-body">
+          <div class="srv-block-inner">
+            <p class="srv-block-desc">Llevamos la contabilidad de tu empresa de forma ordenada y actualizada. Cada comprobante queda registrado con su asiento correspondiente, y el libro mayor refleja la realidad financiera de tu negocio en todo momento.</p>
+            <div class="srv-block-list">
+              <div class="sbl-item"><span class="sbl-check">✓</span>Registración de compras, ventas y gastos</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Armado y control del Libro Diario y Mayor</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Conciliaciones bancarias mensuales</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Control de cuentas a cobrar y a pagar</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Devengamientos y periodificaciones</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Balance de Sumas y Saldos mensual</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-block">
+        <div class="srv-block-header">
+          <div class="srv-block-icon">📑</div>
+          <div class="srv-block-title">
+            <h3>Estados Contables y Balances</h3>
+            <span>Armado, auditoría y presentación de balances anuales</span>
+          </div>
+          <div class="srv-block-arrow">▾</div>
+        </div>
+        <div class="srv-block-body">
+          <div class="srv-block-inner">
+            <p class="srv-block-desc">Armamos los estados contables anuales de tu empresa con rigor técnico y claridad. Un balance bien hecho es una herramienta de gestión, no solo un trámite. Te sirve para acceder a créditos, negociar con proveedores y tomar decisiones estratégicas.</p>
+            <div class="srv-block-list">
+              <div class="sbl-item"><span class="sbl-check">✓</span>Estado de Situación Patrimonial (Balance General)</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Estado de Resultados</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Estado de Evolución del Patrimonio Neto</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Estado de Flujo de Efectivo</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Notas e información complementaria</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Presentación ante el Registro Público de Comercio</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-block">
+        <div class="srv-block-header">
+          <div class="srv-block-icon">🔎</div>
+          <div class="srv-block-title">
+            <h3>Auditoría Interna</h3>
+            <span>Control y verificación de la información contable e impositiva</span>
+          </div>
+          <div class="srv-block-arrow">▾</div>
+        </div>
+        <div class="srv-block-body">
+          <div class="srv-block-inner">
+            <p class="srv-block-desc">Revisamos la información contable e impositiva de tu empresa para detectar inconsistencias, errores de registración o diferencias entre lo declarado y lo real. Es la mejor forma de prevenir contingencias fiscales antes de que AFIP llame a tu puerta.</p>
+            <div class="srv-block-list">
+              <div class="sbl-item"><span class="sbl-check">✓</span>Revisión de declaraciones juradas presentadas</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Cruce de información entre AFIP y registros internos</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Detección de créditos fiscales no aprovechados</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Control de retenciones y percepciones</div>
+              <div class="sbl-item"><span class="sbl-check">✓</span>Informe de observaciones y recomendaciones</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- AFIP STRIP -->
+<div class="afip-strip">
+  <div class="container">
+    <div class="afip-inner reveal">
+      <div class="afip-left">
+        <h3>Operamos con todas las plataformas de AFIP y organismos provinciales.</h3>
+        <p>Conocemos en profundidad los sistemas de recaudación nacionales y provinciales. Trabajamos diariamente con las plataformas de presentación y pago para que cada obligación se cumpla sin errores ni demoras.</p>
+        <div class="afip-badges">
+          <div class="afip-badge">AFIP / ARCA</div>
+          <div class="afip-badge">ARBA</div>
+          <div class="afip-badge">AGIP</div>
+          <div class="afip-badge">Rentas Provinciales</div>
+          <div class="afip-badge">Convenio Multilateral</div>
+          <div class="afip-badge">Facturación Electrónica</div>
+          <div class="afip-badge">Libro IVA Digital</div>
+        </div>
+      </div>
+      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20consultar%20sobre%20gesti%C3%B3n%20contable." class="btn-gold" target="_blank" style="white-space:nowrap;flex-shrink:0">Consultá sin cargo →</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- PARA QUIÉN -->
+<section class="for-who" id="para-quien">
+  <div class="container">
+    <div class="for-who-head reveal">
+      <div class="sec-tag">¿Para quién es?</div>
+      <h2 class="sec-title">Para cualquier empresa, comercio o emprendedor que facture en Argentina.</h2>
+      <p class="sec-sub">Si tenés obligaciones impositivas — y en Argentina todos las tenemos — este servicio es para vos.</p>
+    </div>
+    <div class="profiles-grid reveal">
+      <div class="profile-tile">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=700&q=80" alt="Empresas y PyMEs" loading="lazy"/>
+        <div class="profile-tile-overlay"></div>
+        <div class="pt-tag">Empresas y PyMEs</div>
+        <div class="profile-tile-content">
+          <span class="pt-icon">🏢</span>
+          <div class="pt-title">Empresas y PyMEs</div>
+          <div class="pt-desc">Sociedades (SRL, SA, SAS) con operaciones complejas, múltiples áreas y necesidad de balances anuales formales.</div>
+        </div>
+      </div>
+      <div class="profile-tile">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=700&q=80" alt="Comercios" loading="lazy"/>
+        <div class="profile-tile-overlay"></div>
+        <div class="pt-tag">Comercios</div>
+        <div class="profile-tile-content">
+          <span class="pt-icon">🏪</span>
+          <div class="pt-title">Comercios</div>
+          <div class="pt-desc">Locales, distribuidoras y negocios que necesitan un contador de confianza que entienda su operación y los mantenga al día con AFIP.</div>
+        </div>
+      </div>
+      <div class="profile-tile">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=700&q=80" alt="Emprendedores" loading="lazy"/>
+        <div class="profile-tile-overlay"></div>
+        <div class="pt-tag">Emprendedores</div>
+        <div class="profile-tile-content">
+          <span class="pt-icon">🚀</span>
+          <div class="pt-title">Emprendedores</div>
+          <div class="pt-desc">Profesionales independientes y emprendedores que quieren focalizarse en su proyecto y delegar la parte impositiva en manos expertas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DIFERENCIAL CONTABLE -->
+<section class="dif-contable" id="diferencial">
+  <div class="dif-grid-bg"></div>
+  <div class="container">
+    <div class="dif-inner">
+      <div class="dif-left reveal-left">
+        <div class="sec-tag">La diferencia Ledgix</div>
+        <h2 class="sec-title" style="color:#fff">Un contador que también entiende tus sistemas.</h2>
+        <div class="dif-quote">
+          <p>"La información que sale del sistema tiene que ser válida para el balance. Si el sistema está mal parametrizado, el balance también está mal."</p>
+        </div>
+        <div class="dif-points">
+          <div class="dif-point">
+            <div class="dp-icon">✓</div>
+            <div class="dp-text"><h4>Información que llega sola</h4><p>Si implementamos tu ERP, los datos contables se generan automáticamente desde tu operación. No mandás facturas en PDF a fin de mes.</p></div>
+          </div>
+          <div class="dif-point">
+            <div class="dp-icon">✓</div>
+            <div class="dp-text"><h4>Cero duplicación de trabajo</h4><p>Lo que registrás operativamente en el sistema ya está contabilizado. No hay doble carga ni riesgo de diferencias entre lo operativo y lo contable.</p></div>
+          </div>
+          <div class="dif-point">
+            <div class="dp-icon">✓</div>
+            <div class="dp-text"><h4>Trazabilidad desde la factura hasta el balance</h4><p>Podemos ir desde cualquier línea del balance hasta el comprobante original que la generó. Total transparencia y auditabilidad.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="dif-right reveal-right">
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-card-num">0</div>
+            <h4>Multas por vencimientos</h4>
+            <p>Monitoreamos el calendario impositivo y te avisamos con anticipación para que nunca llegues tarde.</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-num">100%</div>
+            <h4>Trazabilidad contable</h4>
+            <p>Desde el balance hasta el comprobante original en tres clics. Sin biblioratos, sin carpetas perdidas.</p>
+          </div>
+        </div>
+        <div class="stat-card" style="margin-top:16px">
+          <div class="stat-card-num">2en1</div>
+          <h4>Contabilidad + Tecnología integradas</h4>
+          <p>No necesitás coordinar entre un contador y un proveedor de software. Nosotros manejamos los dos extremos y garantizamos que la información fluya sin inconsistencias entre la operación y los estados financieros.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MODALIDADES -->
+<section class="modalities" id="modalidades">
+  <div class="container">
+    <div class="mod-head reveal">
+      <div class="sec-tag">Modalidades</div>
+      <h2 class="sec-title">Elegí la modalidad que mejor se adapta a tu empresa.</h2>
+      <p class="sec-sub">Podés contratarnos para un trabajo puntual o para la gestión mensual continua.</p>
+    </div>
+    <div class="mod-grid reveal">
+      <div class="mod-card">
+        <div class="mod-badge badge-outline">Trabajo puntual</div>
+        <span class="mod-icon">🎯</span>
+        <h3>Consultoría y Trabajo Específico</h3>
+        <p>Para necesidades puntuales: un balance anual, una auditoría, la revisión de declaraciones pasadas o la regularización de una situación impositiva particular.</p>
+        <div class="mod-list">
+          <div class="ml-item"><span class="ml-check">✓</span>Armado y presentación de balance anual</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Auditoría de declaraciones presentadas</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Regularización de deudas impositivas</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Consultoría de planificación fiscal</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Precio cerrado por trabajo</div>
+        </div>
+      </div>
+      <div class="mod-card featured">
+        <div class="mod-badge badge-gold">⭐ Recomendado</div>
+        <span class="mod-icon">📅</span>
+        <h3>Abono Mensual de Gestión Integral</h3>
+        <p>La opción más completa para empresas, comercios y emprendedores que quieren delegar toda la parte contable e impositiva con tranquilidad absoluta.</p>
+        <div class="mod-list">
+          <div class="ml-item"><span class="ml-check">✓</span>Liquidación mensual de todos los impuestos</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Registración contable continua</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Conciliaciones bancarias mensuales</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Balance anual incluido</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Consultas ilimitadas por portal o WhatsApp</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Alertas de vencimientos proactivas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <div class="faq-left reveal-left">
+        <div class="sec-tag">Preguntas frecuentes</div>
+        <h2 class="sec-title">Lo que nos preguntan antes de arrancar.</h2>
+        <p class="sec-sub" style="margin-bottom:36px">Si tu duda no está acá, escribinos. Respondemos el mismo día.</p>
+        <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20tengo%20una%20consulta%20sobre%20gesti%C3%B3n%20contable." class="btn-bordo" target="_blank">💬 Hacer una consulta</a>
+      </div>
+      <div class="faq-list reveal-right">
+        <div class="faq-item">
+          <div class="faq-q">¿Qué necesito para empezar? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Solo una reunión inicial donde entendemos tu situación actual: qué obligaciones tenés, cómo venís operando y qué necesitás ordenar. A partir de ahí te proponemos el plan más adecuado. Esa primera reunión es sin cargo.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Cómo me mandan la documentación? ¿Tengo que llevar papeles? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">No. Todo se gestiona de forma digital. Subís tu documentación a nuestro portal de clientes y nosotros nos encargamos del resto. Si ya tenés un ERP implementado por nosotros, ni siquiera tenés que subir nada — la info llega directamente desde el sistema.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Pueden tomar clientes que ya tienen contador? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Sí. El traspaso de estudio es un proceso que manejamos con mucho cuidado para que sea transparente y sin inconvenientes. Pedimos el legajo al contador anterior, revisamos el estado de situación y tomamos la gestión de forma ordenada.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Hacen balances para presentar al banco o a inversores? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Sí. Armamos estados contables completos con toda la información complementaria requerida por bancos, organismos públicos o inversores. Un balance bien presentado es una herramienta de financiamiento muy poderosa.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Trabajan con Monotributistas también? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Sí. Atendemos desde emprendedores en Monotributo hasta sociedades con estructuras complejas. Para cada perfil tenemos una propuesta ajustada a sus necesidades reales, sin cobrar de más por servicios que no se usan.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Qué pasa si tengo deudas con AFIP? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Lo evaluamos sin juzgar. Revisamos el estado de deuda, analizamos las opciones disponibles (planes de pago, moratorias vigentes) y te acompañamos en el proceso de regularización. Primero ordenamos, después crecemos.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="container cta-inner reveal">
+    <div class="sec-tag">Empezá hoy</div>
+    <h2 class="sec-title">Dejá los impuestos<br/>en manos expertas.</h2>
+    <p class="sec-sub">Primera reunión sin cargo. Analizamos tu situación impositiva actual y te decimos exactamente qué podemos hacer por tu empresa.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20consultar%20sobre%20gesti%C3%B3n%20contable%20e%20impositiva." class="btn-wsp" target="_blank">💬 WhatsApp directo</a>
+      <a href="mailto:ledgix.ar@gmail.com?subject=Consulta%20sobre%20Gesti%C3%B3n%20Contable%20e%20Impositiva" class="btn-mail">✉️ Enviar un mail</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- OTROS SERVICIOS -->
+<section class="other-services">
+  <div class="container">
+    <div class="other-head reveal">
+      <div class="sec-tag">Otros servicios</div>
+      <p>Complementá la gestión contable con el resto de nuestra propuesta integral.</p>
+    </div>
+    <div class="other-grid reveal">
+      <a href="erp.html" class="other-card"><div class="other-card-icon">⚙️</div><span>Implementación de ERP</span></a>
+      <a href="costos.html" class="other-card"><div class="other-card-icon">🏭</div><span>Sistemas de Costos</span></a>
+      <a href="automatizacion.html" class="other-card"><div class="other-card-icon">🔄</div><span>Automatización de Procesos</span></a>
+      <a href="tableros.html" class="other-card"><div class="other-card-icon">📈</div><span>Tableros de Control</span></a>
+      <a href="soporte.html" class="other-card"><div class="other-card-icon">🎓</div><span>Soporte y Capacitación</span></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="logo_LEDGIX.jpeg" alt="Ledgix"/>
+      <p>Consultora especializada en sistemas de información financiera y gestión contable para PyMEs argentinas.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="erp.html">Implementación ERP</a></li>
+        <li><a href="contable.html">Gestión Contable e Impositiva</a></li>
+        <li><a href="costos.html">Sistemas de Costos</a></li>
+        <li><a href="automatizacion.html">Automatización de Procesos</a></li>
+        <li><a href="tableros.html">Tableros de Control</a></li>
+        <li><a href="soporte.html">Soporte y Capacitación</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <div class="footer-contact-item"><div class="fci-icon">📍</div><div class="fci-text">Buenos Aires, Argentina</div></div>
+      <div class="footer-contact-item"><div class="fci-icon">💬</div><div class="fci-text">+54 11 6151-2205</div></div>
+      <div class="footer-contact-item"><div class="fci-icon">✉️</div><div class="fci-text">ledgix.ar@gmail.com</div></div>
+      <div class="footer-contact-item"><div class="fci-icon">🌐</div><div class="fci-text">ledgix.com.ar</div></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 LEDGIX. Todos los derechos reservados.</div>
+    <div id="google_translate_element"></div>
+  </div>
+</footer>
+
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{navbar.classList.toggle('solid',window.scrollY>60)});
+const mobileDrawer=document.getElementById('mobileDrawer');
+const navToggle=document.getElementById('navToggle');
+function closeMobile(){mobileDrawer.classList.remove('open');navToggle.classList.remove('open');document.body.style.overflow=''}
+navToggle.addEventListener('click',()=>{const o=mobileDrawer.classList.toggle('open');navToggle.classList.toggle('open');document.body.style.overflow=o?'hidden':''});
+mobileDrawer.addEventListener('click',(e)=>{if(e.target===mobileDrawer)closeMobile()});
+const allReveals=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.10});
+allReveals.forEach(r=>obs.observe(r));
+// Accordion servicios
+document.querySelectorAll('.srv-block').forEach(block=>{
+  block.querySelector('.srv-block-header').addEventListener('click',()=>{
+    const isOpen=block.classList.contains('open');
+    document.querySelectorAll('.srv-block').forEach(b=>b.classList.remove('open'));
+    if(!isOpen)block.classList.add('open');
+  });
+});
+// FAQ
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'es',layout:google.translate.TranslateElement.InlineLayout.SIMPLE},'google_translate_element')}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

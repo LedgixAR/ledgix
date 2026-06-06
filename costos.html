@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sistemas de Costos | LEDGIX</title>
+<meta name="description" content="Diseño e implementación de sistemas de costos para PyMEs, comercios y emprendedores en Argentina. Conocé tu rentabilidad real y tomá mejores decisiones."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F2557;--navy-mid:#1B3A8C;--green:#1A8C3A;--green-light:#22a847;
+  --bordo:#8B1A1A;--bordo-light:#a82020;--gold:#C9A84C;
+  --white:#FFFFFF;--off:#F7F8FC;--gray:#64748B;--dark:#070E24;
+  --border:rgba(15,37,87,0.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden}
+
+/* ── NAVBAR ── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200;transition:background 0.4s,box-shadow 0.4s;padding:0 6%}
+.navbar.solid{background:rgba(7,14,36,0.97);backdrop-filter:blur(20px);box-shadow:0 2px 40px rgba(0,0,0,0.25)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:80px}
+.nav-logo img{height:44px;width:auto;display:block}
+.nav-menu{display:flex;align-items:center;gap:8px;list-style:none}
+.nav-menu>li{position:relative}
+.nav-menu>li>a{display:flex;align-items:center;gap:6px;text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.80);padding:10px 16px;border-radius:6px;transition:color 0.2s,background 0.2s}
+.nav-menu>li>a:hover{color:#fff;background:rgba(255,255,255,0.07)}
+.nav-menu>li>a .chevron{font-size:0.6rem;transition:transform 0.2s}
+.nav-menu>li:hover>a .chevron{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 8px);left:0;background:var(--dark);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px;min-width:260px;opacity:0;visibility:hidden;transform:translateY(8px);transition:all 0.25s ease;box-shadow:0 24px 60px rgba(0,0,0,0.4)}
+.nav-menu>li:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown a{display:flex;align-items:flex-start;gap:12px;text-decoration:none;padding:12px 14px;border-radius:8px;transition:background 0.15s}
+.dropdown a:hover{background:rgba(255,255,255,0.06)}
+.drop-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;margin-top:1px}
+.drop-text strong{display:block;font-size:0.84rem;font-weight:600;color:#fff;margin-bottom:2px}
+.drop-text span{font-size:0.76rem;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.4}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-portal{font-size:0.78rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;padding:9px 18px;border-radius:6px;border:1px solid rgba(255,255,255,0.18);transition:all 0.2s}
+.nav-portal:hover{color:#fff;border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.06)}
+.nav-cta-btn{font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#fff;text-decoration:none;padding:10px 22px;border-radius:6px;background:var(--bordo);transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 16px rgba(139,26,26,0.4)}
+.nav-cta-btn:hover{background:var(--bordo-light);transform:translateY(-1px)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:210}
+.nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-drawer{display:none;position:fixed;top:80px;left:0;right:0;bottom:0;background:rgba(7,14,36,0.98);backdrop-filter:blur(20px);z-index:190;overflow-y:auto;padding:24px 6% 40px;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1)}
+.mobile-drawer.open{transform:translateX(0)}
+.mobile-nav-links{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:32px}
+.mobile-nav-links li a{display:block;text-decoration:none;font-size:1.1rem;font-weight:500;color:rgba(255,255,255,0.75);padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.mobile-nav-links li a:hover{color:#fff}
+.mobile-services-label{font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:20px 0 12px}
+.mobile-services-grid{display:flex;flex-direction:column;gap:4px;margin-bottom:32px}
+.mobile-services-grid a{display:flex;align-items:center;gap:12px;text-decoration:none;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);transition:background 0.15s}
+.mobile-services-grid a:hover{background:rgba(255,255,255,0.08)}
+.mobile-services-grid a span.icon{font-size:1.1rem;width:32px;text-align:center}
+.mobile-services-grid a span.label{font-size:0.86rem;font-weight:400;color:rgba(255,255,255,0.7)}
+.mobile-actions{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.mobile-actions a{text-align:center;padding:15px;border-radius:8px;font-size:0.88rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;text-decoration:none;transition:all 0.2s}
+.mobile-wsp{background:#25D366;color:#fff}
+.mobile-portal-btn{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2)}
+
+/* ── HERO ── */
+.page-hero{min-height:60vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--dark)}
+.page-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=80');background-size:cover;background-position:center 30%;opacity:0.18}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,var(--dark) 38%,rgba(7,14,36,0.80) 60%,transparent 100%),linear-gradient(to top,var(--dark) 0%,transparent 50%)}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);background-size:72px 72px}
+.page-hero-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,var(--green) 30%,var(--bordo) 70%,transparent)}
+.page-hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;padding:160px 6% 80px}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:28px}
+.breadcrumb a{text-decoration:none;font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.4);letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.breadcrumb a:hover{color:rgba(255,255,255,0.8)}
+.breadcrumb span{font-size:0.76rem;color:rgba(255,255,255,0.2)}
+.breadcrumb strong{font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.6);letter-spacing:0.06em;text-transform:uppercase}
+.page-hero-label{display:inline-flex;align-items:center;gap:10px;font-size:0.7rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.page-hero-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold)}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:700;line-height:1.1;color:#fff;margin-bottom:24px;max-width:700px}
+.page-hero h1 em{font-style:italic;color:var(--gold)}
+.page-hero-desc{font-size:1.05rem;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.62);max-width:560px;margin-bottom:44px}
+.page-hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ── BUTTONS ── */
+.btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--dark);text-decoration:none;font-size:0.84rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:6px;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 8px 32px rgba(201,168,76,0.35)}
+.btn-gold:hover{background:#d4b055;transform:translateY(-2px)}
+.btn-ghost-light{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;text-decoration:none;font-size:0.84rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:6px;border:1px solid rgba(255,255,255,0.22);transition:all 0.2s}
+.btn-ghost-light:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.06)}
+.btn-bordo{display:inline-flex;align-items:center;gap:10px;background:var(--bordo);color:#fff;text-decoration:none;font-size:0.84rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:6px;transition:background 0.2s,transform 0.15s;box-shadow:0 8px 32px rgba(139,26,26,0.3)}
+.btn-bordo:hover{background:var(--bordo-light);transform:translateY(-2px)}
+.btn-wsp{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;text-decoration:none;font-size:0.84rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:8px;transition:background 0.2s,transform 0.15s;box-shadow:0 8px 32px rgba(37,211,102,0.3)}
+.btn-wsp:hover{background:#1fb855;transform:translateY(-2px)}
+.btn-mail{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;text-decoration:none;font-size:0.84rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:16px 36px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);transition:all 0.2s}
+.btn-mail:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.07)}
+
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:0 6%}
+.sec-tag{display:inline-flex;align-items:center;gap:10px;font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--bordo);margin-bottom:18px}
+.sec-tag::before{content:'';display:block;width:28px;height:2px;background:var(--bordo);border-radius:2px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;line-height:1.12;color:var(--navy);margin-bottom:20px}
+.sec-sub{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray);max-width:560px}
+
+/* ── PROBLEMA ── */
+.problema{padding:100px 0;background:var(--off)}
+.problema-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.problema-left{}
+.problema-left .sec-sub{margin-bottom:36px}
+.problema-visual{
+  background:var(--dark);border-radius:20px;overflow:hidden;
+  box-shadow:0 40px 100px rgba(7,14,36,0.30);
+}
+.pv-header{background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.06);padding:16px 22px;display:flex;align-items:center;gap:8px}
+.pvh-dot{width:10px;height:10px;border-radius:50%}
+.pvh-dot.r{background:#FF5F57}.pvh-dot.y{background:#FFBD2E}.pvh-dot.g{background:#28CA41}
+.pvh-title{margin-left:10px;font-size:0.72rem;color:rgba(255,255,255,0.35);font-family:monospace;letter-spacing:0.06em}
+.pv-body{padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.pv-row-label{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px}
+.cost-item{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:8px}
+.ci-left{display:flex;align-items:center;gap:10px}
+.ci-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ci-dot.green{background:var(--green)}.ci-dot.gold{background:var(--gold)}.ci-dot.bordo{background:var(--bordo-light)}.ci-dot.gray{background:rgba(255,255,255,0.25)}
+.ci-name{font-size:0.82rem;color:rgba(255,255,255,0.7)}
+.ci-value{font-size:0.88rem;font-weight:600;color:#fff;font-family:monospace}
+.ci-value.positive{color:#4ade80}
+.ci-value.negative{color:#f87171}
+.pv-divider{border:none;border-top:1px solid rgba(255,255,255,0.08)}
+.pv-total{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.20);border-radius:8px}
+.pv-total span{font-size:0.84rem;font-weight:600;color:rgba(255,255,255,0.8)}
+.pv-total strong{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gold)}
+
+.pain-cards{display:flex;flex-direction:column;gap:14px;margin-top:36px}
+.pain-card{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;background:var(--white);border:1px solid var(--border);border-left:3px solid var(--bordo);border-radius:10px;transition:box-shadow 0.2s,transform 0.2s}
+.pain-card:hover{box-shadow:0 8px 28px rgba(15,37,87,0.08);transform:translateX(4px)}
+.pc-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.pc-text h4{font-size:0.9rem;font-weight:600;color:var(--navy);margin-bottom:3px}
+.pc-text p{font-size:0.82rem;font-weight:300;line-height:1.6;color:var(--gray)}
+
+/* ── QUÉ HACEMOS ── */
+.que-hacemos{padding:100px 0;background:var(--white)}
+.qh-intro{text-align:center;max-width:640px;margin:0 auto 72px}
+.qh-intro .sec-tag{justify-content:center}
+.qh-intro .sec-sub{margin:0 auto}
+.qh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.qh-card{background:var(--off);border:1px solid var(--border);border-radius:16px;padding:36px 28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;transition:box-shadow 0.3s,transform 0.3s}
+.qh-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--navy),var(--bordo));transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease}
+.qh-card:hover{box-shadow:0 16px 48px rgba(15,37,87,0.10);transform:translateY(-4px)}
+.qh-card:hover::before{transform:scaleX(1)}
+.qh-num{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold)}
+.qh-icon{width:56px;height:56px;border-radius:14px;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 16px rgba(15,37,87,0.08)}
+.qh-card h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--navy);line-height:1.3}
+.qh-card p{font-size:0.86rem;font-weight:300;line-height:1.7;color:var(--gray)}
+
+/* ── SECTORES ── */
+.sectores{padding:100px 0;background:var(--dark);position:relative;overflow:hidden}
+.sectores::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(201,168,76,0.07),transparent 55%),radial-gradient(ellipse at 20% 70%,rgba(26,140,58,0.05),transparent 50%);pointer-events:none}
+.sectores-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);background-size:72px 72px}
+.sectores-inner{position:relative;z-index:1}
+.sectores-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:64px}
+.sectores-head .sec-tag{color:var(--gold)}
+.sectores-head .sec-tag::before{background:var(--gold)}
+.sectores-head .sec-title{color:#fff;margin-bottom:0}
+.sectores-head p{font-size:0.95rem;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.55)}
+.sectores-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.sector-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:28px 22px;display:flex;flex-direction:column;gap:12px;transition:background 0.2s,border-color 0.2s,transform 0.2s}
+.sector-card:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.16);transform:translateY(-3px)}
+.sector-icon{font-size:2rem}
+.sector-card h4{font-family:'Playfair Display',serif;font-size:0.98rem;font-weight:700;color:#fff}
+.sector-card p{font-size:0.80rem;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.48)}
+.sector-items{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.sector-item{font-size:0.76rem;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:6px}
+.sector-item::before{content:'·';color:var(--gold);font-weight:700}
+
+/* ── PROCESO ── */
+.proceso{padding:100px 0;background:var(--off)}
+.proceso-head{text-align:center;max-width:600px;margin:0 auto 72px}
+.proceso-head .sec-tag{justify-content:center}
+.proceso-head .sec-sub{margin:0 auto}
+.proceso-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.steps-list{display:flex;flex-direction:column;gap:0}
+.step-row{display:flex;gap:24px;position:relative}
+.step-row:not(:last-child)::before{content:'';position:absolute;left:27px;top:56px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(15,37,87,0.2),transparent);z-index:0}
+.step-circle{width:56px;height:56px;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;position:relative;z-index:1;box-shadow:0 4px 16px rgba(15,37,87,0.08);transition:background 0.3s,border-color 0.3s}
+.step-row:hover .step-circle{background:var(--navy);border-color:var(--navy)}
+.step-content{padding:12px 0 40px}
+.step-num{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--bordo);margin-bottom:6px}
+.step-content h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.step-content p{font-size:0.85rem;font-weight:300;line-height:1.7;color:var(--gray)}
+
+.proceso-image{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(15,37,87,0.15);top:0}
+.proceso-image img{width:100%;height:100%;object-fit:cover;display:block;min-height:500px}
+.proceso-image-badge{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(7,14,36,0.90);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.10);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px}
+.pib-icon{font-size:1.5rem;flex-shrink:0}
+.pib-text strong{display:block;font-size:0.88rem;font-weight:600;color:#fff;margin-bottom:3px}
+.pib-text span{font-size:0.78rem;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.4}
+
+/* ── BENEFICIOS ── */
+.beneficios{padding:100px 0;background:var(--white)}
+.beneficios-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.beneficios-image{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(15,37,87,0.12)}
+.beneficios-image img{width:100%;height:460px;object-fit:cover;display:block}
+.beneficios-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.ben-card{padding:22px 20px;background:var(--off);border:1px solid var(--border);border-radius:12px;display:flex;flex-direction:column;gap:10px;transition:box-shadow 0.2s,transform 0.2s,border-color 0.2s}
+.ben-card:hover{box-shadow:0 8px 28px rgba(15,37,87,0.08);transform:translateY(-3px);border-color:rgba(15,37,87,0.2)}
+.ben-icon{font-size:1.4rem}
+.ben-card h4{font-size:0.88rem;font-weight:600;color:var(--navy);line-height:1.3}
+.ben-card p{font-size:0.80rem;font-weight:300;line-height:1.6;color:var(--gray)}
+
+/* ── FAQ ── */
+.faq{padding:100px 0;background:var(--off)}
+.faq-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.faq-list{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.faq-item{border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color 0.2s}
+.faq-item.open{border-color:rgba(15,37,87,0.25)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;cursor:pointer;font-size:0.92rem;font-weight:500;color:var(--navy);transition:background 0.15s;user-select:none}
+.faq-q:hover{background:var(--white)}
+.faq-arrow{font-size:0.75rem;color:var(--gray);transition:transform 0.3s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;font-size:0.88rem;font-weight:300;line-height:1.75;color:var(--gray);padding:0 22px}
+.faq-item.open .faq-a{max-height:300px;padding:0 22px 20px}
+
+/* ── MODALIDADES ── */
+.modalities{padding:100px 0;background:var(--white)}
+.mod-head{text-align:center;max-width:580px;margin:0 auto 64px}
+.mod-head .sec-tag{justify-content:center}
+.mod-head .sec-sub{margin:0 auto}
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.mod-card{background:var(--off);border:1px solid var(--border);border-radius:16px;padding:44px 36px;position:relative;overflow:hidden;transition:box-shadow 0.3s,transform 0.3s}
+.mod-card:hover{box-shadow:0 20px 60px rgba(15,37,87,0.10);transform:translateY(-4px)}
+.mod-card.featured{background:var(--navy);border-color:transparent}
+.mod-card.featured::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(201,168,76,0.12),transparent 60%);pointer-events:none}
+.mod-badge{display:inline-block;font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:24px}
+.badge-outline{background:rgba(15,37,87,0.06);color:var(--navy);border:1px solid var(--border)}
+.badge-gold{background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.35)}
+.mod-icon{font-size:2.2rem;margin-bottom:16px;display:block}
+.mod-card h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin-bottom:12px}
+.mod-card.featured h3{color:#fff}
+.mod-card:not(.featured) h3{color:var(--navy)}
+.mod-card p{font-size:0.9rem;font-weight:300;line-height:1.75;margin-bottom:24px}
+.mod-card.featured p{color:rgba(255,255,255,0.6)}
+.mod-card:not(.featured) p{color:var(--gray)}
+.mod-list{display:flex;flex-direction:column;gap:10px}
+.ml-item{display:flex;align-items:flex-start;gap:10px;font-size:0.86rem;font-weight:300;line-height:1.5}
+.mod-card.featured .ml-item{color:rgba(255,255,255,0.65)}
+.mod-card:not(.featured) .ml-item{color:var(--gray)}
+.ml-check{flex-shrink:0;font-size:0.8rem;margin-top:2px}
+.mod-card.featured .ml-check{color:var(--gold)}
+.mod-card:not(.featured) .ml-check{color:var(--green)}
+
+/* ── CTA ── */
+.cta-section{padding:120px 0;background:var(--navy);position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=1600&q=80');background-size:cover;background-position:center;opacity:0.07}
+.cta-overlay{position:absolute;inset:0;background:linear-gradient(135deg,var(--navy) 50%,rgba(139,26,26,0.35) 100%)}
+.cta-inner{position:relative;z-index:1;text-align:center}
+.cta-inner .sec-tag{justify-content:center;color:var(--gold)}
+.cta-inner .sec-tag::before{background:var(--gold)}
+.cta-inner .sec-title{color:#fff;margin:0 auto 20px}
+.cta-inner .sec-sub{color:rgba(255,255,255,0.6);margin:0 auto 52px}
+.cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* ── OTROS SERVICIOS ── */
+.other-services{padding:80px 0;background:var(--off);border-top:1px solid var(--border)}
+.other-head{text-align:center;margin-bottom:48px}
+.other-head .sec-tag{justify-content:center}
+.other-head p{font-size:0.9rem;font-weight:300;color:var(--gray);margin-top:8px}
+.other-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.other-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 20px;text-align:center;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:10px;transition:box-shadow 0.2s,transform 0.2s,border-color 0.2s}
+.other-card:hover{box-shadow:0 8px 28px rgba(15,37,87,0.08);transform:translateY(-3px);border-color:rgba(15,37,87,0.2)}
+.other-card-icon{font-size:1.6rem}
+.other-card span{font-size:0.8rem;font-weight:500;color:var(--navy);line-height:1.4;text-align:center}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:56px}
+.footer-brand img{height:40px;margin-bottom:20px}
+.footer-brand p{font-size:0.83rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.38);max-width:280px}
+.footer-col h5{font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul a{text-decoration:none;font-size:0.84rem;font-weight:300;color:rgba(255,255,255,0.45);transition:color 0.2s}
+.footer-col ul a:hover{color:rgba(255,255,255,0.85)}
+.footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+.fci-icon{font-size:0.9rem;margin-top:2px;opacity:0.6}
+.fci-text{font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.5}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:0.76rem;color:rgba(255,255,255,0.25)}
+#google_translate_element .goog-te-combo{font-size:0.76rem!important;color:rgba(255,255,255,0.45)!important;background:rgba(255,255,255,0.05)!important;border:1px solid rgba(255,255,255,0.12)!important;border-radius:6px!important;padding:5px 10px!important;outline:none}
+.goog-logo-link,.goog-te-gadget>span{display:none!important}
+.goog-te-gadget{font-size:0!important}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-right.visible{opacity:1;transform:none}
+.hero-anim{animation:fadeUp 1s ease both}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .problema-layout,.beneficios-layout,.proceso-layout,.faq-layout{grid-template-columns:1fr}
+  .sectores-head{grid-template-columns:1fr}
+  .sectores-grid{grid-template-columns:1fr 1fr}
+  .qh-grid{grid-template-columns:1fr 1fr}
+  .other-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-menu,.nav-actions{display:none}
+  .nav-toggle{display:flex}
+  .mobile-drawer{display:block}
+  .mod-grid{grid-template-columns:1fr}
+  .qh-grid{grid-template-columns:1fr}
+  .sectores-grid{grid-template-columns:1fr}
+  .beneficios-grid{grid-template-columns:1fr}
+  .other-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="logo_LEDGIX.jpeg" alt="Ledgix"/></a>
+    <ul class="nav-menu">
+      <li>
+        <a href="index.html#servicios">Servicios <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="erp.html"><div class="drop-icon">⚙️</div><div class="drop-text"><strong>Implementación de ERP</strong><span>Parametrización y puesta a punto de sistemas de gestión</span></div></a>
+          <a href="contable.html"><div class="drop-icon">📒</div><div class="drop-text"><strong>Gestión Contable e Impositiva</strong><span>Liquidación de impuestos, balances y auditoría</span></div></a>
+          <a href="costos.html"><div class="drop-icon">🏭</div><div class="drop-text"><strong>Sistemas de Costos</strong><span>Estructura de costos para conocer tu rentabilidad real</span></div></a>
+          <a href="automatizacion.html"><div class="drop-icon">🔄</div><div class="drop-text"><strong>Automatización de Procesos</strong><span>Circuitos eficientes para eliminar tareas repetitivas</span></div></a>
+          <a href="tableros.html"><div class="drop-icon">📈</div><div class="drop-text"><strong>Tableros de Control</strong><span>Dashboards financieros en tiempo real</span></div></a>
+          <a href="soporte.html"><div class="drop-icon">🎓</div><div class="drop-text"><strong>Soporte y Capacitación</strong><span>Acompañamiento continuo post-implementación</span></div></a>
+        </div>
+      </li>
+      <li><a href="index.html#diferencial">Nosotros</a></li>
+      <li><a href="index.html#proceso">Metodología</a></li>
+      <li><a href="index.html#portal">Clientes</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="index.html#portal" class="nav-portal">Acceso Clientes</a>
+      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20consultar%20sobre%20sistemas%20de%20costos." class="nav-cta-btn" target="_blank">Diagnóstico gratuito</a>
+    </div>
+    <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" onclick="closeMobile()">Inicio</a></li>
+    <li><a href="index.html#diferencial" onclick="closeMobile()">Nosotros</a></li>
+    <li><a href="index.html#proceso" onclick="closeMobile()">Metodología</a></li>
+    <li><a href="index.html#portal" onclick="closeMobile()">Clientes</a></li>
+    <li><a href="index.html#contacto" onclick="closeMobile()">Contacto</a></li>
+  </ul>
+  <div class="mobile-services-label">Servicios</div>
+  <div class="mobile-services-grid">
+    <a href="erp.html" onclick="closeMobile()"><span class="icon">⚙️</span><span class="label">Implementación de ERP</span></a>
+    <a href="contable.html" onclick="closeMobile()"><span class="icon">📒</span><span class="label">Gestión Contable e Impositiva</span></a>
+    <a href="costos.html" onclick="closeMobile()"><span class="icon">🏭</span><span class="label">Sistemas de Costos</span></a>
+    <a href="automatizacion.html" onclick="closeMobile()"><span class="icon">🔄</span><span class="label">Automatización de Procesos</span></a>
+    <a href="tableros.html" onclick="closeMobile()"><span class="icon">📈</span><span class="label">Tableros de Control</span></a>
+    <a href="soporte.html" onclick="closeMobile()"><span class="icon">🎓</span><span class="label">Soporte y Capacitación</span></a>
+  </div>
+  <div class="mobile-actions">
+    <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20agendar%20un%20diagn%C3%B3stico." class="mobile-wsp" target="_blank">💬 Diagnóstico sin cargo</a>
+    <a href="index.html#portal" class="mobile-portal-btn" onclick="closeMobile()">🔐 Acceso Clientes</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-accent"></div>
+  <div class="page-hero-content hero-anim">
+    <div class="breadcrumb">
+      <a href="index.html">Inicio</a><span>/</span>
+      <a href="index.html#servicios">Servicios</a><span>/</span>
+      <strong>Sistemas de Costos</strong>
+    </div>
+    <div class="page-hero-label">Servicio 04</div>
+    <h1>Conocé cuánto te cuesta<br/>cada cosa <em>de verdad.</em></h1>
+    <p class="page-hero-desc">Diseñamos e implementamos sistemas de costos a medida para que sepas exactamente cuánto ganás por producto, servicio o cliente — y dónde estás perdiendo plata sin saberlo.</p>
+    <div class="page-hero-btns">
+      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20consultar%20sobre%20sistemas%20de%20costos." class="btn-gold" target="_blank">💬 Consultá sin cargo</a>
+      <a href="#que-hacemos" class="btn-ghost-light">Ver el servicio →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- EL PROBLEMA -->
+<section class="problema" id="problema">
+  <div class="container">
+    <div class="problema-layout">
+      <div class="problema-left reveal-left">
+        <div class="sec-tag">El problema real</div>
+        <h2 class="sec-title">¿Sabés realmente cuánto ganás por cada producto o servicio?</h2>
+        <p class="sec-sub">La mayoría de las PyMEs, comercios y emprendedores saben cuánto facturan. Muy pocos saben cuánto les cuesta producir o prestar cada cosa — y esa diferencia define si el negocio es rentable o no.</p>
+        <div class="pain-cards">
+          <div class="pain-card">
+            <div class="pc-icon">💸</div>
+            <div class="pc-text"><h4>Precios fijados a intuición</h4><p>Sin un sistema de costos, los precios se calculan "a ojo" o copiando a la competencia, sin saber si cubrís todos los costos reales.</p></div>
+          </div>
+          <div class="pain-card">
+            <div class="pc-icon">📉</div>
+            <div class="pc-text"><h4>Facturás bien pero ganás poco</h4><p>El negocio vende, pero la plata no alcanza. Los costos ocultos (indirectos, mano de obra, depreciaciones) se comen el margen sin que lo veas.</p></div>
+          </div>
+          <div class="pain-card">
+            <div class="pc-icon">🤔</div>
+            <div class="pc-text"><h4>No sabés qué productos son rentables</h4><p>Vendés muchas cosas pero no tenés claro cuáles te generan ganancia real y cuáles te hacen perder dinero sin saberlo.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="problema-visual">
+          <div class="pv-header">
+            <div class="pvh-dot r"></div><div class="pvh-dot y"></div><div class="pvh-dot g"></div>
+            <div class="pvh-title">LEDGIX — Análisis de Rentabilidad por Producto</div>
+          </div>
+          <div class="pv-body">
+            <div class="pv-row-label">Estructura de costos — Producto A</div>
+            <div class="cost-item">
+              <div class="ci-left"><div class="ci-dot green"></div><span class="ci-name">Precio de venta</span></div>
+              <div class="ci-value">$ 12.500</div>
+            </div>
+            <div class="cost-item">
+              <div class="ci-left"><div class="ci-dot bordo"></div><span class="ci-name">Costo de materia prima</span></div>
+              <div class="ci-value negative">- $ 5.200</div>
+            </div>
+            <div class="cost-item">
+              <div class="ci-left"><div class="ci-dot bordo"></div><span class="ci-name">Mano de obra directa</span></div>
+              <div class="ci-value negative">- $ 2.100</div>
+            </div>
+            <div class="cost-item">
+              <div class="ci-left"><div class="ci-dot gold"></div><span class="ci-name">Costos indirectos asignados</span></div>
+              <div class="ci-value negative">- $ 1.850</div>
+            </div>
+            <div class="cost-item">
+              <div class="ci-left"><div class="ci-dot gray"></div><span class="ci-name">Gastos de estructura</span></div>
+              <div class="ci-value negative">- $ 980</div>
+            </div>
+            <hr class="pv-divider"/>
+            <div class="pv-total">
+              <span>Resultado neto por unidad</span>
+              <strong>$ 2.370</strong>
+            </div>
+            <div class="pv-row-label" style="margin-top:8px">Margen de contribución</div>
+            <div class="cost-item">
+              <div class="ci-left"><div class="ci-dot green"></div><span class="ci-name">Rentabilidad sobre ventas</span></div>
+              <div class="ci-value positive">18,96%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- QUÉ HACEMOS -->
+<section class="que-hacemos" id="que-hacemos">
+  <div class="container">
+    <div class="qh-intro reveal">
+      <div class="sec-tag">Nuestro servicio</div>
+      <h2 class="sec-title">Diseñamos el sistema de costos que tu negocio necesita.</h2>
+      <p class="sec-sub">No existe un sistema de costos universal. Lo construimos a medida de tu actividad, tu estructura y tus objetivos.</p>
+    </div>
+    <div class="qh-grid reveal">
+      <div class="qh-card">
+        <div class="qh-num">01</div>
+        <div class="qh-icon">🗺️</div>
+        <h3>Relevamiento y diseño de la estructura</h3>
+        <p>Analizamos tu operación y diseñamos la estructura de costos más adecuada: qué elementos incluir, cómo clasificarlos y cómo distribuir los costos indirectos entre productos o servicios.</p>
+      </div>
+      <div class="qh-card">
+        <div class="qh-num">02</div>
+        <div class="qh-icon">⚙️</div>
+        <h3>Implementación en tu sistema de gestión</h3>
+        <p>Integramos el sistema de costos dentro de tu ERP o herramienta de gestión para que los datos fluyan automáticamente, sin cargar información manualmente cada mes.</p>
+      </div>
+      <div class="qh-card">
+        <div class="qh-num">03</div>
+        <div class="qh-icon">📊</div>
+        <h3>Reportes de rentabilidad por producto</h3>
+        <p>Armamos reportes claros que te muestran la rentabilidad real por producto, línea de negocio o cliente. Información accionable para tomar mejores decisiones de precio y mix de ventas.</p>
+      </div>
+      <div class="qh-card">
+        <div class="qh-num">04</div>
+        <div class="qh-icon">💰</div>
+        <h3>Determinación del precio de venta técnico</h3>
+        <p>Calculamos el precio mínimo de venta que cubre todos tus costos y el precio objetivo que asegura el margen de ganancia que necesitás. Nunca más fijar precios a intuición.</p>
+      </div>
+      <div class="qh-card">
+        <div class="qh-num">05</div>
+        <div class="qh-icon">🔄</div>
+        <h3>Actualización por inflación y variación de insumos</h3>
+        <p>En el contexto económico argentino, los costos cambian permanentemente. Te enseñamos a actualizar el sistema y te acompañamos en los ajustes periódicos para que siempre tengas datos vigentes.</p>
+      </div>
+      <div class="qh-card">
+        <div class="qh-num">06</div>
+        <div class="qh-icon">🎯</div>
+        <h3>Punto de equilibrio y análisis de escenarios</h3>
+        <p>Calculamos cuánto tenés que vender para cubrir todos tus costos y empezar a ganar. Y simulamos escenarios: ¿qué pasa si sube el costo de un insumo un 20%? ¿O si bajás el precio para ganar volumen?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTORES -->
+<section class="sectores" id="sectores">
+  <div class="sectores-grid-bg"></div>
+  <div class="container sectores-inner">
+    <div class="sectores-head reveal">
+      <div>
+        <div class="sec-tag">¿Para qué rubros?</div>
+        <h2 class="sec-title">Sistemas de costos para cualquier tipo de negocio.</h2>
+      </div>
+      <p>Cada rubro tiene su propia lógica de costos. Una fábrica no funciona igual que un estudio de servicios, y un comercio no tiene los mismos costos que un e-commerce. Conocemos las particularidades de cada uno.</p>
+    </div>
+    <div class="sectores-grid reveal">
+      <div class="sector-card">
+        <div class="sector-icon">🏭</div>
+        <h4>Industria y Fabricación</h4>
+        <p>Costeo de productos terminados con materia prima, mano de obra directa y costos de conversión.</p>
+        <div class="sector-items">
+          <div class="sector-item">Costo por lote de producción</div>
+          <div class="sector-item">Distribución de costos fijos</div>
+          <div class="sector-item">Control de desperdicios</div>
+        </div>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icon">🏪</div>
+        <h4>Comercios y Distribución</h4>
+        <p>Costo de mercadería vendida, margen por producto y análisis de rentabilidad por línea comercial.</p>
+        <div class="sector-items">
+          <div class="sector-item">Rentabilidad por SKU</div>
+          <div class="sector-item">Costo de almacenamiento</div>
+          <div class="sector-item">Margen por canal de venta</div>
+        </div>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icon">💼</div>
+        <h4>Servicios y Profesionales</h4>
+        <p>Costo por hora de servicio, rentabilidad por cliente y determinación de honorarios mínimos viables.</p>
+        <div class="sector-items">
+          <div class="sector-item">Costo-hora del equipo</div>
+          <div class="sector-item">Rentabilidad por proyecto</div>
+          <div class="sector-item">Umbral de rentabilidad</div>
+        </div>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icon">🚀</div>
+        <h4>Emprendedores y Startups</h4>
+        <p>Estructura de costos desde cero, punto de equilibrio y modelo financiero básico para validar la viabilidad del negocio.</p>
+        <div class="sector-items">
+          <div class="sector-item">Punto de equilibrio inicial</div>
+          <div class="sector-item">Proyección de márgenes</div>
+          <div class="sector-item">Precio de lanzamiento</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROCESO -->
+<section class="proceso" id="proceso-costos">
+  <div class="container">
+    <div class="proceso-head reveal">
+      <div class="sec-tag">Cómo lo hacemos</div>
+      <h2 class="sec-title">El proceso de implementación del sistema de costos.</h2>
+      <p class="sec-sub">De la hoja en blanco a un sistema funcionando que te da información útil todos los meses.</p>
+    </div>
+    <div class="proceso-layout reveal">
+      <div class="steps-list">
+        <div class="step-row">
+          <div class="step-circle">🔍</div>
+          <div class="step-content">
+            <div class="step-num">Etapa 01</div>
+            <h4>Relevamiento de la operación</h4>
+            <p>Entendemos cómo producís, qué insumos usás, cuánto tiempo insume cada proceso y cuáles son tus costos fijos de estructura. Sin este paso, cualquier sistema de costos es inválido.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-circle">📐</div>
+          <div class="step-content">
+            <div class="step-num">Etapa 02</div>
+            <h4>Clasificación y diseño</h4>
+            <p>Clasificamos todos tus costos (fijos, variables, directos, indirectos) y diseñamos el método de costeo más adecuado para tu tipo de negocio.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-circle">⚙️</div>
+          <div class="step-content">
+            <div class="step-num">Etapa 03</div>
+            <h4>Implementación y carga inicial</h4>
+            <p>Volcamos la estructura de costos en tu sistema de gestión o en una herramienta específica. Cargamos los datos iniciales y validamos que los resultados sean coherentes con tu realidad.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-circle">📊</div>
+          <div class="step-content">
+            <div class="step-num">Etapa 04</div>
+            <h4>Reportes y análisis</h4>
+            <p>Generamos los primeros reportes de rentabilidad y los analizamos juntos. Te mostramos qué decisiones podés tomar con esta información desde el primer mes.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-circle">🔄</div>
+          <div class="step-content">
+            <div class="step-num">Etapa 05</div>
+            <h4>Mantenimiento y actualización</h4>
+            <p>Te capacitamos para que puedas actualizar el sistema cuando cambien los costos, y te acompañamos con revisiones periódicas para que la información siempre esté vigente.</p>
+          </div>
+        </div>
+      </div>
+      <div class="proceso-image reveal-right">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80" alt="Análisis de costos" loading="lazy"/>
+        <div class="proceso-image-badge">
+          <div class="pib-icon">💡</div>
+          <div class="pib-text">
+            <strong>Decisiones basadas en datos reales</strong>
+            <span>No en estimaciones ni en lo que "parece" que cuesta. En números concretos y auditables.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BENEFICIOS -->
+<section class="beneficios" id="beneficios">
+  <div class="container">
+    <div class="beneficios-layout">
+      <div class="reveal-left">
+        <div class="sec-tag">¿Para qué sirve?</div>
+        <h2 class="sec-title">Lo que cambia cuando conocés tus costos reales.</h2>
+        <p class="sec-sub">Un sistema de costos bien implementado no es solo información — es una herramienta de gestión que transforma la forma en que tomás decisiones.</p>
+        <div class="beneficios-grid">
+          <div class="ben-card">
+            <div class="ben-icon">💰</div>
+            <h4>Precios que cubren todos los costos</h4>
+            <p>Nunca más vender por debajo del costo sin saberlo.</p>
+          </div>
+          <div class="ben-card">
+            <div class="ben-icon">🎯</div>
+            <h4>Foco en los productos más rentables</h4>
+            <p>Sabés dónde enfocar tu esfuerzo de ventas y producción.</p>
+          </div>
+          <div class="ben-card">
+            <div class="ben-icon">📉</div>
+            <h4>Reducción de costos con criterio</h4>
+            <p>Identificás dónde están los desperdicios y las ineficiencias reales.</p>
+          </div>
+          <div class="ben-card">
+            <div class="ben-icon">🏦</div>
+            <h4>Acceso a financiamiento</h4>
+            <p>Los bancos e inversores valoran los negocios que conocen sus números.</p>
+          </div>
+          <div class="ben-card">
+            <div class="ben-icon">📊</div>
+            <h4>Presupuestos y proyecciones reales</h4>
+            <p>Con costos claros, tus proyecciones financieras son confiables.</p>
+          </div>
+          <div class="ben-card">
+            <div class="ben-icon">🤝</div>
+            <h4>Negociación con proveedores</h4>
+            <p>Sabés exactamente hasta dónde podés ceder en precio sin perder margen.</p>
+          </div>
+        </div>
+      </div>
+      <div class="beneficios-image reveal-right">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&q=80" alt="Rentabilidad y análisis" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MODALIDADES -->
+<section class="modalities" id="modalidades">
+  <div class="container">
+    <div class="mod-head reveal">
+      <div class="sec-tag">Modalidades</div>
+      <h2 class="sec-title">Elegí cómo querés trabajar.</h2>
+      <p class="sec-sub">Desde una implementación puntual hasta el acompañamiento mensual continuo.</p>
+    </div>
+    <div class="mod-grid reveal">
+      <div class="mod-card">
+        <div class="mod-badge badge-outline">Proyecto puntual</div>
+        <span class="mod-icon">🎯</span>
+        <h3>Diseño e Implementación</h3>
+        <p>Ideal para negocios que nunca tuvieron un sistema de costos o que quieren revisar y rediseñar el que tienen. Trabajo cerrado con entregable definido.</p>
+        <div class="mod-list">
+          <div class="ml-item"><span class="ml-check">✓</span>Relevamiento completo de la operación</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Diseño de la estructura de costos</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Implementación en sistema o planilla</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Primeros reportes de rentabilidad</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Capacitación para uso autónomo</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Precio cerrado, sin sorpresas</div>
+        </div>
+      </div>
+      <div class="mod-card featured">
+        <div class="mod-badge badge-gold">⭐ Recomendado</div>
+        <span class="mod-icon">🔄</span>
+        <h3>Implementación + Actualización Continua</h3>
+        <p>En Argentina los costos cambian permanentemente. Esta modalidad incluye el diseño inicial y el acompañamiento mensual para mantener el sistema siempre vigente.</p>
+        <div class="mod-list">
+          <div class="ml-item"><span class="ml-check">✓</span>Todo lo incluido en el proyecto puntual</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Actualización mensual de costos e insumos</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Ajuste por inflación y variación de precios</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Reporte mensual de rentabilidad por producto</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Análisis de escenarios ante cambios del mercado</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Integrado con la gestión contable si lo requerís</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <div class="faq-left reveal-left">
+        <div class="sec-tag">Preguntas frecuentes</div>
+        <h2 class="sec-title">Lo que nos preguntan antes de arrancar.</h2>
+        <p class="sec-sub" style="margin-bottom:36px">Si tu duda no está acá, escribinos. Respondemos el mismo día.</p>
+        <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20tengo%20una%20consulta%20sobre%20sistemas%20de%20costos." class="btn-bordo" target="_blank">💬 Hacer una consulta</a>
+      </div>
+      <div class="faq-list reveal-right">
+        <div class="faq-item">
+          <div class="faq-q">¿Mi negocio es demasiado chico para un sistema de costos? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">No existe negocio demasiado chico para conocer sus costos. Al contrario: cuanto más chico es el negocio, más importante es saber si cada venta genera ganancia real. Un emprendedor que vende 50 unidades por mes necesita saber tanto como una fábrica que produce 10.000.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Necesito un software especial para implementar el sistema? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">No necesariamente. Dependiendo de la complejidad de tu negocio, podemos trabajar con tu ERP actual, con una planilla de cálculo bien estructurada, o con una herramienta específica de costeo. Lo definimos según tu realidad y presupuesto.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Cuánto tiempo lleva tener el sistema funcionando? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Para negocios simples (un servicio o una línea de productos), podemos tener los primeros reportes en 2 a 3 semanas. Para operaciones más complejas con múltiples líneas de producción o muchos insumos, el proceso puede llevar entre 4 y 8 semanas.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Con la inflación en Argentina, el sistema no queda desactualizado rápido? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Sí, y por eso recomendamos la modalidad de actualización continua. Diseñamos el sistema para que la actualización de precios sea rápida y sencilla, y te acompañamos mensualmente para que siempre tengas datos vigentes. Un sistema de costos desactualizado es peor que no tener uno.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Puedo usar el sistema de costos junto con la gestión contable de Ledgix? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Sí, y es la combinación ideal. Cuando el sistema de costos está integrado con la contabilidad, los números operativos y los financieros hablan el mismo idioma. Podés ir desde el resultado contable hasta el costo de cada producto sin inconsistencias.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Me van a enseñar a usar el sistema o siempre voy a depender de Ledgix? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">El objetivo es que puedas operar el sistema con autonomía. Te capacitamos para que entiendas la lógica y puedas actualizarlo vos mismo. Podés elegir hacerlo solo o contratarnos para el mantenimiento mensual — esa decisión es tuya.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="container cta-inner reveal">
+    <div class="sec-tag">Empezá hoy</div>
+    <h2 class="sec-title">Dejá de adivinar.<br/>Empezá a calcular.</h2>
+    <p class="sec-sub">Primera reunión sin cargo. Analizamos tu operación y te mostramos qué información estás perdiendo por no tener un sistema de costos.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20consultar%20sobre%20implementaci%C3%B3n%20de%20sistema%20de%20costos." class="btn-wsp" target="_blank">💬 WhatsApp directo</a>
+      <a href="mailto:ledgix.ar@gmail.com?subject=Consulta%20sobre%20Sistema%20de%20Costos" class="btn-mail">✉️ Enviar un mail</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- OTROS SERVICIOS -->
+<section class="other-services">
+  <div class="container">
+    <div class="other-head reveal">
+      <div class="sec-tag">Otros servicios</div>
+      <p>Complementá el sistema de costos con el resto de nuestra propuesta integral.</p>
+    </div>
+    <div class="other-grid reveal">
+      <a href="erp.html" class="other-card"><div class="other-card-icon">⚙️</div><span>Implementación de ERP</span></a>
+      <a href="contable.html" class="other-card"><div class="other-card-icon">📒</div><span>Gestión Contable e Impositiva</span></a>
+      <a href="automatizacion.html" class="other-card"><div class="other-card-icon">🔄</div><span>Automatización de Procesos</span></a>
+      <a href="tableros.html" class="other-card"><div class="other-card-icon">📈</div><span>Tableros de Control</span></a>
+      <a href="soporte.html" class="other-card"><div class="other-card-icon">🎓</div><span>Soporte y Capacitación</span></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="logo_LEDGIX.jpeg" alt="Ledgix"/>
+      <p>Consultora especializada en sistemas de información financiera y gestión contable para PyMEs argentinas.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="erp.html">Implementación ERP</a></li>
+        <li><a href="contable.html">Gestión Contable e Impositiva</a></li>
+        <li><a href="costos.html">Sistemas de Costos</a></li>
+        <li><a href="automatizacion.html">Automatización de Procesos</a></li>
+        <li><a href="tableros.html">Tableros de Control</a></li>
+        <li><a href="soporte.html">Soporte y Capacitación</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <div class="footer-contact-item"><div class="fci-icon">📍</div><div class="fci-text">Buenos Aires, Argentina</div></div>
+      <div class="footer-contact-item"><div class="fci-icon">💬</div><div class="fci-text">+54 11 6151-2205</div></div>
+      <div class="footer-contact-item"><div class="fci-icon">✉️</div><div class="fci-text">ledgix.ar@gmail.com</div></div>
+      <div class="footer-contact-item"><div class="fci-icon">🌐</div><div class="fci-text">ledgix.com.ar</div></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 LEDGIX. Todos los derechos reservados.</div>
+    <div id="google_translate_element"></div>
+  </div>
+</footer>
+
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{navbar.classList.toggle('solid',window.scrollY>60)});
+const mobileDrawer=document.getElementById('mobileDrawer');
+const navToggle=document.getElementById('navToggle');
+function closeMobile(){mobileDrawer.classList.remove('open');navToggle.classList.remove('open');document.body.style.overflow=''}
+navToggle.addEventListener('click',()=>{const o=mobileDrawer.classList.toggle('open');navToggle.classList.toggle('open');document.body.style.overflow=o?'hidden':''});
+mobileDrawer.addEventListener('click',(e)=>{if(e.target===mobileDrawer)closeMobile()});
+const allReveals=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.10});
+allReveals.forEach(r=>obs.observe(r));
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'es',layout:google.translate.TranslateElement.InlineLayout.SIMPLE},'google_translate_element')}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

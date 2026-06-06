@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Soporte y Capacitación | LEDGIX</title>
+<meta name="description" content="Soporte técnico y capacitación en sistemas de gestión para PyMEs, comercios y emprendedores. Acompañamiento continuo post-implementación para que tu equipo opere con autonomía."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F2557;--navy-mid:#1B3A8C;--green:#1A8C3A;--green-light:#22a847;
+  --bordo:#8B1A1A;--bordo-light:#a82020;--gold:#C9A84C;
+  --white:#FFFFFF;--off:#F7F8FC;--gray:#64748B;--dark:#070E24;
+  --border:rgba(15,37,87,0.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden}
+
+/* ── NAVBAR ── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200;transition:background 0.4s,box-shadow 0.4s;padding:0 6%}
+.navbar.solid{background:rgba(7,14,36,0.97);backdrop-filter:blur(20px);box-shadow:0 2px 40px rgba(0,0,0,0.25)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:80px}
+.nav-logo img{height:44px;width:auto;display:block}
+.nav-menu{display:flex;align-items:center;gap:8px;list-style:none}
+.nav-menu>li{position:relative}
+.nav-menu>li>a{display:flex;align-items:center;gap:6px;text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.80);padding:10px 16px;border-radius:6px;transition:color 0.2s,background 0.2s}
+.nav-menu>li>a:hover{color:#fff;background:rgba(255,255,255,0.07)}
+.nav-menu>li>a .chevron{font-size:0.6rem;transition:transform 0.2s}
+.nav-menu>li:hover>a .chevron{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 8px);left:0;background:var(--dark);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px;min-width:260px;opacity:0;visibility:hidden;transform:translateY(8px);transition:all 0.25s ease;box-shadow:0 24px 60px rgba(0,0,0,0.4)}
+.nav-menu>li:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown a{display:flex;align-items:flex-start;gap:12px;text-decoration:none;padding:12px 14px;border-radius:8px;transition:background 0.15s}
+.dropdown a:hover{background:rgba(255,255,255,0.06)}
+.drop-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;margin-top:1px}
+.drop-text strong{display:block;font-size:0.84rem;font-weight:600;color:#fff;margin-bottom:2px}
+.drop-text span{font-size:0.76rem;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.4}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-portal{font-size:0.78rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;padding:9px 18px;border-radius:6px;border:1px solid rgba(255,255,255,0.18);transition:all 0.2s}
+.nav-portal:hover{color:#fff;border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.06)}
+.nav-cta-btn{font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#fff;text-decoration:none;padding:10px 22px;border-radius:6px;background:var(--bordo);transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 16px rgba(139,26,26,0.4)}
+.nav-cta-btn:hover{background:var(--bordo-light);transform:translateY(-1px)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:210}
+.nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-drawer{display:none;position:fixed;top:80px;left:0;right:0;bottom:0;background:rgba(7,14,36,0.98);backdrop-filter:blur(20px);z-index:190;overflow-y:auto;padding:24px 6% 40px;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1)}
+.mobile-drawer.open{transform:translateX(0)}
+.mobile-nav-links{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:32px}
+.mobile-nav-links li a{display:block;text-decoration:none;font-size:1.1rem;font-weight:500;color:rgba(255,255,255,0.75);padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.mobile-nav-links li a:hover{color:#fff}
+.mobile-services-label{font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:20px 0 12px}
+.mobile-services-grid{display:flex;flex-direction:column;gap:4px;margin-bottom:32px}
+.mobile-services-grid a{display:flex;align-items:center;gap:12px;text-decoration:none;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);transition:background 0.15s}
+.mobile-services-grid a:hover{background:rgba(255,255,255,0.08)}
+.mobile-services-grid a span.icon{font-size:1.1rem;width:32px;text-align:center}
+.mobile-services-grid a span.label{font-size:0.86rem;font-weight:400;color:rgba(255,255,255,0.7)}
+.mobile-actions{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.mobile-actions a{text-align:center;padding:15px;border-radius:8px;font-size:0.88rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;text-decoration:none;transition:all 0.2s}
+.mobile-wsp{background:#25D366;color:#fff}
+.mobile-portal-btn{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2)}
+
+/* ── HERO ── */
+.page-hero{min-height:60vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--dark)}
+.page-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1800&q=80');background-size:cover;background-position:center 35%;opacity:0.18}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,var(--dark) 38%,rgba(7,14,36,0.80) 60%,transparent 100%),linear-gradient(to top,var(--dark) 0%,transparent 50%)}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);background-size:72px 72px}
+.page-hero-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,var(--green) 30%,var(--bordo) 70%,transparent)}
+.page-hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;padding:160px 6% 80px}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:28px}
+.breadcrumb a{text-decoration:none;font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.4);letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.breadcrumb a:hover{color:rgba(255,255,255,0.8)}
+.breadcrumb span{font-size:0.76rem;color:rgba(255,255,255,0.2)}
+.breadcrumb strong{font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.6);letter-spacing:0.06em;text-transform:uppercase}
+.page-hero-label{display:inline-flex;align-items:center;gap:10px;font-size:0.7rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.page-hero-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold)}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:700;line-height:1.1;color:#fff;margin-bottom:24px;max-width:700px}
+.page-hero h1 em{font-style:italic;color:var(--gold)}
+.page-hero-desc{font-size:1.05rem;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.62);max-width:560px;margin-bottom:44px}
+.page-hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ── BUTTONS ── */
+.btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--dark);text-decoration:none;font-size:0.84rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:6px;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 8px 32px rgba(201,168,76,0.35)}
+.btn-gold:hover{background:#d4b055;transform:translateY(-2px)}
+.btn-ghost-light{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;text-decoration:none;font-size:0.84rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:6px;border:1px solid rgba(255,255,255,0.22);transition:all 0.2s}
+.btn-ghost-light:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.06)}
+.btn-bordo{display:inline-flex;align-items:center;gap:10px;background:var(--bordo);color:#fff;text-decoration:none;font-size:0.84rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:6px;transition:background 0.2s,transform 0.15s;box-shadow:0 8px 32px rgba(139,26,26,0.3)}
+.btn-bordo:hover{background:var(--bordo-light);transform:translateY(-2px)}
+.btn-wsp{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;text-decoration:none;font-size:0.84rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;border-radius:8px;transition:background 0.2s,transform 0.15s;box-shadow:0 8px 32px rgba(37,211,102,0.3)}
+.btn-wsp:hover{background:#1fb855;transform:translateY(-2px)}
+.btn-mail{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;text-decoration:none;font-size:0.84rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:16px 36px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);transition:all 0.2s}
+.btn-mail:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.07)}
+
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:0 6%}
+.sec-tag{display:inline-flex;align-items:center;gap:10px;font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--bordo);margin-bottom:18px}
+.sec-tag::before{content:'';display:block;width:28px;height:2px;background:var(--bordo);border-radius:2px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;line-height:1.12;color:var(--navy);margin-bottom:20px}
+.sec-sub{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray);max-width:560px}
+
+/* ── POR QUÉ IMPORTA ── */
+.why{padding:100px 0;background:var(--off)}
+.why-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.why-image{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(15,37,87,0.15)}
+.why-image img{width:100%;height:480px;object-fit:cover;display:block}
+.why-badge{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(7,14,36,0.90);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.10);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px}
+.wb-icon{font-size:1.5rem;flex-shrink:0}
+.wb-text strong{display:block;font-size:0.88rem;font-weight:600;color:#fff;margin-bottom:3px}
+.wb-text span{font-size:0.78rem;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.4}
+.why-right .sec-sub{margin-bottom:32px}
+.why-points{display:flex;flex-direction:column;gap:14px}
+.why-point{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;background:var(--white);border:1px solid var(--border);border-left:3px solid var(--navy);border-radius:10px;transition:box-shadow 0.2s,transform 0.2s}
+.why-point:hover{box-shadow:0 8px 28px rgba(15,37,87,0.08);transform:translateX(4px)}
+.wp-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.wp-text h4{font-size:0.9rem;font-weight:600;color:var(--navy);margin-bottom:3px}
+.wp-text p{font-size:0.82rem;font-weight:300;line-height:1.6;color:var(--gray)}
+
+/* ── DOS SERVICIOS ── */
+.dos-servicios{padding:100px 0;background:var(--white)}
+.ds-head{text-align:center;max-width:620px;margin:0 auto 72px}
+.ds-head .sec-tag{justify-content:center}
+.ds-head .sec-sub{margin:0 auto}
+.ds-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.ds-card{border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(15,37,87,0.10)}
+.ds-card-header{padding:32px 36px 24px;position:relative}
+.ds-card.soporte .ds-card-header{background:var(--navy)}
+.ds-card.capacitacion .ds-card-header{background:var(--dark)}
+.ds-card-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(201,168,76,0.12),transparent 60%);pointer-events:none}
+.ds-label{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;position:relative;z-index:1}
+.ds-icon{font-size:2.4rem;margin-bottom:12px;display:block;position:relative;z-index:1}
+.ds-card-header h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1.2;position:relative;z-index:1}
+.ds-card-header p{font-size:0.9rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.6);margin-top:10px;position:relative;z-index:1}
+.ds-card-body{background:var(--off);padding:32px 36px;display:flex;flex-direction:column;gap:12px}
+.ds-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--white);border:1px solid var(--border);border-radius:10px;transition:box-shadow 0.2s,transform 0.2s}
+.ds-item:hover{box-shadow:0 6px 20px rgba(15,37,87,0.07);transform:translateX(3px)}
+.ds-item-icon{font-size:1rem;flex-shrink:0;margin-top:2px}
+.ds-item-text h4{font-size:0.88rem;font-weight:600;color:var(--navy);margin-bottom:2px}
+.ds-item-text p{font-size:0.80rem;font-weight:300;line-height:1.55;color:var(--gray)}
+
+/* ── CANALES ── */
+.canales{padding:80px 0;background:var(--navy);position:relative;overflow:hidden}
+.canales::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,168,76,0.08),transparent 60%);pointer-events:none}
+.canales-inner{position:relative;z-index:1}
+.canales-head{text-align:center;max-width:540px;margin:0 auto 52px}
+.canales-head .sec-tag{justify-content:center;color:var(--gold)}
+.canales-head .sec-tag::before{background:var(--gold)}
+.canales-head .sec-title{color:#fff;margin-bottom:12px}
+.canales-head p{font-size:0.95rem;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7}
+.canales-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.canal-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:28px 22px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;transition:background 0.2s,border-color 0.2s,transform 0.2s}
+.canal-card:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.18);transform:translateY(-3px)}
+.canal-icon{font-size:2rem;width:60px;height:60px;border-radius:14px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center}
+.canal-card h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff}
+.canal-card p{font-size:0.80rem;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.48)}
+.canal-badge{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:100px}
+.cb-green{background:rgba(26,140,58,0.2);color:#4ade80;border:1px solid rgba(26,140,58,0.3)}
+.cb-gold{background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.3)}
+
+/* ── MODALIDADES ── */
+.modalidades{padding:100px 0;background:var(--off)}
+.mod-head{text-align:center;max-width:580px;margin:0 auto 64px}
+.mod-head .sec-tag{justify-content:center}
+.mod-head .sec-sub{margin:0 auto}
+.mod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.mod-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:36px 28px;position:relative;overflow:hidden;transition:box-shadow 0.3s,transform 0.3s}
+.mod-card:hover{box-shadow:0 20px 60px rgba(15,37,87,0.10);transform:translateY(-4px)}
+.mod-card.featured{background:var(--navy);border-color:transparent}
+.mod-card.featured::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(201,168,76,0.12),transparent 60%);pointer-events:none}
+.mod-badge{display:inline-block;font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:20px}
+.badge-outline{background:rgba(15,37,87,0.06);color:var(--navy);border:1px solid var(--border)}
+.badge-gold{background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.35)}
+.mod-icon{font-size:2rem;margin-bottom:14px;display:block}
+.mod-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:10px;line-height:1.3}
+.mod-card.featured h3{color:#fff}
+.mod-card:not(.featured) h3{color:var(--navy)}
+.mod-card p{font-size:0.86rem;font-weight:300;line-height:1.75;margin-bottom:20px}
+.mod-card.featured p{color:rgba(255,255,255,0.6)}
+.mod-card:not(.featured) p{color:var(--gray)}
+.mod-list{display:flex;flex-direction:column;gap:9px}
+.ml-item{display:flex;align-items:flex-start;gap:9px;font-size:0.84rem;font-weight:300;line-height:1.5}
+.mod-card.featured .ml-item{color:rgba(255,255,255,0.65)}
+.mod-card:not(.featured) .ml-item{color:var(--gray)}
+.ml-check{flex-shrink:0;font-size:0.78rem;margin-top:2px}
+.mod-card.featured .ml-check{color:var(--gold)}
+.mod-card:not(.featured) .ml-check{color:var(--green)}
+
+/* ── PROCESO CAPACITACION ── */
+.proceso-cap{padding:100px 0;background:var(--dark);position:relative;overflow:hidden}
+.proceso-cap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(26,140,58,0.06),transparent 55%),radial-gradient(ellipse at 20% 70%,rgba(139,26,26,0.08),transparent 50%);pointer-events:none}
+.pc-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);background-size:72px 72px}
+.pc-inner{position:relative;z-index:1}
+.pc-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:64px}
+.pc-head .sec-tag{color:var(--gold)}
+.pc-head .sec-tag::before{background:var(--gold)}
+.pc-head .sec-title{color:#fff;margin-bottom:0}
+.pc-head p{font-size:0.95rem;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.55)}
+.cap-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.cap-step{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px 26px;display:flex;flex-direction:column;gap:14px;transition:background 0.2s,border-color 0.2s,transform 0.2s}
+.cap-step:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.16);transform:translateY(-3px)}
+.cap-step-num{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold)}
+.cap-step-icon{font-size:2rem}
+.cap-step h4{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.3}
+.cap-step p{font-size:0.84rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.5)}
+.cap-step-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.cst{font-size:0.68rem;font-weight:500;padding:4px 10px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.10);color:rgba(255,255,255,0.45)}
+
+/* ── TICKET MOCKUP ── */
+.ticket-section{padding:100px 0;background:var(--white)}
+.ticket-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.ticket-left .sec-sub{margin-bottom:32px}
+.ticket-features{display:flex;flex-direction:column;gap:14px}
+.tf-item{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;background:var(--off);border:1px solid var(--border);border-radius:10px;transition:box-shadow 0.2s,transform 0.2s}
+.tf-item:hover{box-shadow:0 8px 28px rgba(15,37,87,0.08);transform:translateX(4px)}
+.tf-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.tf-text h4{font-size:0.9rem;font-weight:600;color:var(--navy);margin-bottom:3px}
+.tf-text p{font-size:0.82rem;font-weight:300;line-height:1.6;color:var(--gray)}
+
+/* Ticket mockup visual */
+.ticket-mockup{background:var(--dark);border-radius:20px;overflow:hidden;box-shadow:0 40px 100px rgba(7,14,36,0.30)}
+.tm-bar{background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.06);padding:14px 20px;display:flex;align-items:center;gap:8px}
+.tm-dot{width:11px;height:11px;border-radius:50%}
+.tm-dot.r{background:#FF5F57}.tm-dot.y{background:#FFBD2E}.tm-dot.g{background:#28CA41}
+.tm-title{margin-left:10px;font-size:0.72rem;color:rgba(255,255,255,0.35);font-family:monospace;letter-spacing:0.06em}
+.tm-body{padding:24px 20px;display:flex;flex-direction:column;gap:12px}
+.tm-label{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:2px}
+.ticket-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px 16px}
+.tc-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+.tc-title{font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.82)}
+.tc-badge{font-size:0.62rem;font-weight:700;padding:3px 9px;border-radius:100px;white-space:nowrap;flex-shrink:0}
+.tb-open{background:rgba(255,189,46,0.15);color:#FFBD2E;border:1px solid rgba(255,189,46,0.3)}
+.tb-ok{background:rgba(26,140,58,0.18);color:#4ade80;border:1px solid rgba(26,140,58,0.3)}
+.tb-prog{background:rgba(27,58,140,0.25);color:#93c5fd;border:1px solid rgba(27,58,140,0.4)}
+.tc-meta{font-size:0.7rem;color:rgba(255,255,255,0.3)}
+.tm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tm-stat{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:10px 12px;text-align:center}
+.tms-num{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;line-height:1}
+.tms-num.green{color:#4ade80}.tms-num.gold{color:var(--gold)}
+.tms-label{font-size:0.62rem;color:rgba(255,255,255,0.3);margin-top:3px}
+
+/* ── FAQ ── */
+.faq{padding:100px 0;background:var(--off)}
+.faq-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.faq-list{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.faq-item{border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color 0.2s}
+.faq-item.open{border-color:rgba(15,37,87,0.25)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;cursor:pointer;font-size:0.92rem;font-weight:500;color:var(--navy);transition:background 0.15s;user-select:none}
+.faq-q:hover{background:var(--white)}
+.faq-arrow{font-size:0.75rem;color:var(--gray);transition:transform 0.3s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;font-size:0.88rem;font-weight:300;line-height:1.75;color:var(--gray);padding:0 22px}
+.faq-item.open .faq-a{max-height:300px;padding:0 22px 20px}
+
+/* ── CTA ── */
+.cta-section{padding:120px 0;background:var(--navy);position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=1600&q=80');background-size:cover;background-position:center;opacity:0.07}
+.cta-overlay{position:absolute;inset:0;background:linear-gradient(135deg,var(--navy) 50%,rgba(139,26,26,0.35) 100%)}
+.cta-inner{position:relative;z-index:1;text-align:center}
+.cta-inner .sec-tag{justify-content:center;color:var(--gold)}
+.cta-inner .sec-tag::before{background:var(--gold)}
+.cta-inner .sec-title{color:#fff;margin:0 auto 20px}
+.cta-inner .sec-sub{color:rgba(255,255,255,0.6);margin:0 auto 52px}
+.cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* ── OTROS SERVICIOS ── */
+.other-services{padding:80px 0;background:var(--off);border-top:1px solid var(--border)}
+.other-head{text-align:center;margin-bottom:48px}
+.other-head .sec-tag{justify-content:center}
+.other-head p{font-size:0.9rem;font-weight:300;color:var(--gray);margin-top:8px}
+.other-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.other-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 20px;text-align:center;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:10px;transition:box-shadow 0.2s,transform 0.2s,border-color 0.2s}
+.other-card:hover{box-shadow:0 8px 28px rgba(15,37,87,0.08);transform:translateY(-3px);border-color:rgba(15,37,87,0.2)}
+.other-card-icon{font-size:1.6rem}
+.other-card span{font-size:0.8rem;font-weight:500;color:var(--navy);line-height:1.4;text-align:center}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:56px}
+.footer-brand img{height:40px;margin-bottom:20px}
+.footer-brand p{font-size:0.83rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.38);max-width:280px}
+.footer-col h5{font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul a{text-decoration:none;font-size:0.84rem;font-weight:300;color:rgba(255,255,255,0.45);transition:color 0.2s}
+.footer-col ul a:hover{color:rgba(255,255,255,0.85)}
+.footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+.fci-icon{font-size:0.9rem;margin-top:2px;opacity:0.6}
+.fci-text{font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.5}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:0.76rem;color:rgba(255,255,255,0.25)}
+#google_translate_element .goog-te-combo{font-size:0.76rem!important;color:rgba(255,255,255,0.45)!important;background:rgba(255,255,255,0.05)!important;border:1px solid rgba(255,255,255,0.12)!important;border-radius:6px!important;padding:5px 10px!important;outline:none}
+.goog-logo-link,.goog-te-gadget>span{display:none!important}
+.goog-te-gadget{font-size:0!important}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-right.visible{opacity:1;transform:none}
+.hero-anim{animation:fadeUp 1s ease both}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .why-layout,.ticket-layout,.faq-layout{grid-template-columns:1fr}
+  .ds-grid{grid-template-columns:1fr}
+  .canales-grid{grid-template-columns:1fr 1fr}
+  .mod-grid{grid-template-columns:1fr 1fr}
+  .cap-steps{grid-template-columns:1fr 1fr}
+  .pc-head{grid-template-columns:1fr}
+  .other-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-menu,.nav-actions{display:none}
+  .nav-toggle{display:flex}
+  .mobile-drawer{display:block}
+  .mod-grid{grid-template-columns:1fr}
+  .cap-steps{grid-template-columns:1fr}
+  .canales-grid{grid-template-columns:1fr 1fr}
+  .other-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .tm-stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="logo_LEDGIX.jpeg" alt="Ledgix"/></a>
+    <ul class="nav-menu">
+      <li>
+        <a href="index.html#servicios">Servicios <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="erp.html"><div class="drop-icon">⚙️</div><div class="drop-text"><strong>Implementación de ERP</strong><span>Parametrización y puesta a punto de sistemas de gestión</span></div></a>
+          <a href="contable.html"><div class="drop-icon">📒</div><div class="drop-text"><strong>Gestión Contable e Impositiva</strong><span>Liquidación de impuestos, balances y auditoría</span></div></a>
+          <a href="costos.html"><div class="drop-icon">🏭</div><div class="drop-text"><strong>Sistemas de Costos</strong><span>Estructura de costos para conocer tu rentabilidad real</span></div></a>
+          <a href="automatizacion.html"><div class="drop-icon">🔄</div><div class="drop-text"><strong>Automatización de Procesos</strong><span>Circuitos eficientes para eliminar tareas repetitivas</span></div></a>
+          <a href="tableros.html"><div class="drop-icon">📈</div><div class="drop-text"><strong>Tableros de Control</strong><span>Dashboards financieros en tiempo real</span></div></a>
+          <a href="soporte.html"><div class="drop-icon">🎓</div><div class="drop-text"><strong>Soporte y Capacitación</strong><span>Acompañamiento continuo post-implementación</span></div></a>
+        </div>
+      </li>
+      <li><a href="index.html#diferencial">Nosotros</a></li>
+      <li><a href="index.html#proceso">Metodología</a></li>
+      <li><a href="index.html#portal">Clientes</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="index.html#portal" class="nav-portal">Acceso Clientes</a>
+      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20consultar%20sobre%20soporte%20y%20capacitaci%C3%B3n." class="nav-cta-btn" target="_blank">Diagnóstico gratuito</a>
+    </div>
+    <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" onclick="closeMobile()">Inicio</a></li>
+    <li><a href="index.html#diferencial" onclick="closeMobile()">Nosotros</a></li>
+    <li><a href="index.html#proceso" onclick="closeMobile()">Metodología</a></li>
+    <li><a href="index.html#portal" onclick="closeMobile()">Clientes</a></li>
+    <li><a href="index.html#contacto" onclick="closeMobile()">Contacto</a></li>
+  </ul>
+  <div class="mobile-services-label">Servicios</div>
+  <div class="mobile-services-grid">
+    <a href="erp.html" onclick="closeMobile()"><span class="icon">⚙️</span><span class="label">Implementación de ERP</span></a>
+    <a href="contable.html" onclick="closeMobile()"><span class="icon">📒</span><span class="label">Gestión Contable e Impositiva</span></a>
+    <a href="costos.html" onclick="closeMobile()"><span class="icon">🏭</span><span class="label">Sistemas de Costos</span></a>
+    <a href="automatizacion.html" onclick="closeMobile()"><span class="icon">🔄</span><span class="label">Automatización de Procesos</span></a>
+    <a href="tableros.html" onclick="closeMobile()"><span class="icon">📈</span><span class="label">Tableros de Control</span></a>
+    <a href="soporte.html" onclick="closeMobile()"><span class="icon">🎓</span><span class="label">Soporte y Capacitación</span></a>
+  </div>
+  <div class="mobile-actions">
+    <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20agendar%20un%20diagn%C3%B3stico." class="mobile-wsp" target="_blank">💬 Diagnóstico sin cargo</a>
+    <a href="index.html#portal" class="mobile-portal-btn" onclick="closeMobile()">🔐 Acceso Clientes</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-accent"></div>
+  <div class="page-hero-content hero-anim">
+    <div class="breadcrumb">
+      <a href="index.html">Inicio</a><span>/</span>
+      <a href="index.html#servicios">Servicios</a><span>/</span>
+      <strong>Soporte y Capacitación</strong>
+    </div>
+    <div class="page-hero-label">Servicio 06</div>
+    <h1>No desaparecemos<br/>cuando el sistema <em>arranca.</em></h1>
+    <p class="page-hero-desc">El soporte continuo y la capacitación de tu equipo son lo que convierte una implementación en un cambio real y duradero. Estamos con vos después del lanzamiento.</p>
+    <div class="page-hero-btns">
+      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20consultar%20sobre%20soporte%20y%20capacitaci%C3%B3n." class="btn-gold" target="_blank">💬 Consultá sin cargo</a>
+      <a href="#dos-servicios" class="btn-ghost-light">Ver el servicio →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- POR QUÉ IMPORTA -->
+<section class="why" id="por-que">
+  <div class="container">
+    <div class="why-layout">
+      <div class="why-image reveal-left">
+        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&q=80" alt="Capacitación de equipo" loading="lazy"/>
+        <div class="why-badge">
+          <div class="wb-icon">💡</div>
+          <div class="wb-text">
+            <strong>El sistema es tan bueno como la gente que lo usa</strong>
+            <span>La tecnología sin capacitación es una inversión a medias.</span>
+          </div>
+        </div>
+      </div>
+      <div class="why-right reveal-right">
+        <div class="sec-tag">¿Por qué importa?</div>
+        <h2 class="sec-title">Una implementación sin soporte es una implementación incompleta.</h2>
+        <p class="sec-sub" style="margin-bottom:32px">El mayor riesgo de cualquier proyecto tecnológico no es técnico — es humano. Si el equipo no entiende el sistema, no lo usa. Y si no lo usa, la inversión no rinde.</p>
+        <div class="why-points">
+          <div class="why-point">
+            <div class="wp-icon">👥</div>
+            <div class="wp-text"><h4>La adopción no es automática</h4><p>Las personas tienen resistencia al cambio. La capacitación reduce esa fricción y acelera la adopción real del sistema.</p></div>
+          </div>
+          <div class="why-point">
+            <div class="wp-icon">🔧</div>
+            <div class="wp-text"><h4>Los problemas aparecen con el uso real</h4><p>Las dudas y los errores surgen en la operación diaria, no en las pruebas. El soporte post-lanzamiento es cuando más se necesita.</p></div>
+          </div>
+          <div class="why-point">
+            <div class="wp-icon">📈</div>
+            <div class="wp-text"><h4>El negocio cambia y el sistema tiene que acompañar</h4><p>Nuevas líneas de producto, cambios de proceso o crecimiento del equipo requieren ajustes continuos para que el sistema siga siendo útil.</p></div>
+          </div>
+          <div class="why-point">
+            <div class="wp-icon">🛡️</div>
+            <div class="wp-text"><h4>La continuidad operativa no puede depender de una sola persona</h4><p>Si solo una persona sabe usar el sistema, el negocio es vulnerable. La capacitación distribuye el conocimiento en el equipo.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DOS SERVICIOS: SOPORTE + CAPACITACIÓN -->
+<section class="dos-servicios" id="dos-servicios">
+  <div class="container">
+    <div class="ds-head reveal">
+      <div class="sec-tag">El servicio en detalle</div>
+      <h2 class="sec-title">Dos pilares que se complementan.</h2>
+      <p class="sec-sub">El soporte resuelve los problemas del día a día. La capacitación construye la autonomía a largo plazo.</p>
+    </div>
+    <div class="ds-grid reveal">
+
+      <div class="ds-card soporte">
+        <div class="ds-card-header">
+          <div class="ds-label">Pilar 01</div>
+          <span class="ds-icon">🛠️</span>
+          <h2>Soporte Técnico y Funcional</h2>
+          <p>Resolvemos las dudas, errores y consultas que surgen en el uso diario del sistema, con tiempos de respuesta garantizados y seguimiento de cada caso.</p>
+        </div>
+        <div class="ds-card-body">
+          <div class="ds-item">
+            <div class="ds-item-icon">🎫</div>
+            <div class="ds-item-text"><h4>Sistema de tickets</h4><p>Cada consulta tiene número, responsable y estado. Nada se pierde ni queda sin respuesta.</p></div>
+          </div>
+          <div class="ds-item">
+            <div class="ds-item-icon">⚡</div>
+            <div class="ds-item-text"><h4>Respuesta garantizada</h4><p>Tiempo de respuesta definido según la criticidad del problema. Las urgencias operativas tienen prioridad.</p></div>
+          </div>
+          <div class="ds-item">
+            <div class="ds-item-icon">🔧</div>
+            <div class="ds-item-text"><h4>Ajustes y correcciones</h4><p>Si el sistema necesita un ajuste de parametrización o corrección de datos, lo resolvemos dentro del abono.</p></div>
+          </div>
+          <div class="ds-item">
+            <div class="ds-item-icon">📊</div>
+            <div class="ds-item-text"><h4>Reportes y nuevas consultas</h4><p>Si necesitás un reporte nuevo o una consulta específica de datos, te lo armamos sin costo adicional.</p></div>
+          </div>
+          <div class="ds-item">
+            <div class="ds-item-icon">📅</div>
+            <div class="ds-item-text"><h4>Reuniones de seguimiento</h4><p>Revisiones periódicas para evaluar cómo funciona el sistema y detectar oportunidades de mejora.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-card capacitacion">
+        <div class="ds-card-header">
+          <div class="ds-label">Pilar 02</div>
+          <span class="ds-icon">🎓</span>
+          <h2>Capacitación del Equipo</h2>
+          <p>Entrenamos a cada integrante de tu equipo según su rol para que operen el sistema con autonomía real desde el primer día.</p>
+        </div>
+        <div class="ds-card-body">
+          <div class="ds-item">
+            <div class="ds-item-icon">👤</div>
+            <div class="ds-item-text"><h4>Capacitación por rol</h4><p>Administración, ventas, depósito y dirección reciben formación específica para lo que necesitan hacer.</p></div>
+          </div>
+          <div class="ds-item">
+            <div class="ds-item-icon">🖥️</div>
+            <div class="ds-item-text"><h4>Presencial o remota</h4><p>Nos adaptamos a tu equipo y tu operación. Las sesiones pueden ser en tu empresa o por videollamada.</p></div>
+          </div>
+          <div class="ds-item">
+            <div class="ds-item-icon">📖</div>
+            <div class="ds-item-text"><h4>Manual operativo incluido</h4><p>Documentamos los procedimientos clave para que queden registrados y cualquier persona nueva pueda incorporarse.</p></div>
+          </div>
+          <div class="ds-item">
+            <div class="ds-item-icon">🔄</div>
+            <div class="ds-item-text"><h4>Capacitación de nuevos integrantes</h4><p>Cuando sumás alguien al equipo, los incorporamos al sistema con una sesión de inducción específica.</p></div>
+          </div>
+          <div class="ds-item">
+            <div class="ds-item-icon">🚀</div>
+            <div class="ds-item-text"><h4>Capacitación en nuevas funcionalidades</h4><p>Cuando incorporamos nuevos módulos o mejoras al sistema, capacitamos al equipo antes de la puesta en marcha.</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CANALES DE ATENCIÓN -->
+<section class="canales" id="canales">
+  <div class="container">
+    <div class="canales-inner">
+      <div class="canales-head reveal">
+        <div class="sec-tag">Canales de atención</div>
+        <h2 class="sec-title">Estamos disponibles donde lo necesitás.</h2>
+        <p>Múltiples canales de contacto para que puedas elevar una consulta o reportar un problema de la forma más cómoda para vos.</p>
+      </div>
+      <div class="canales-grid reveal">
+        <div class="canal-card">
+          <div class="canal-icon">🎫</div>
+          <h4>Portal de tickets</h4>
+          <p>El canal principal para consultas, reportes y seguimiento de casos. Disponible desde tu portal de cliente.</p>
+          <div class="canal-badge cb-green">Recomendado</div>
+        </div>
+        <div class="canal-card">
+          <div class="canal-icon">💬</div>
+          <h4>WhatsApp Business</h4>
+          <p>Para consultas rápidas y urgencias operativas. Atención en horario de oficina con respuesta el mismo día.</p>
+          <div class="canal-badge cb-green">Respuesta rápida</div>
+        </div>
+        <div class="canal-card">
+          <div class="canal-icon">📧</div>
+          <h4>Mail</h4>
+          <p>Para consultas que requieren documentación adjunta o detalle escrito. Respuesta dentro de las 24 horas hábiles.</p>
+          <div class="canal-badge cb-gold">24hs hábiles</div>
+        </div>
+        <div class="canal-card">
+          <div class="canal-icon">📹</div>
+          <h4>Videollamada</h4>
+          <p>Para problemas complejos que requieren ver la pantalla en tiempo real. Se agenda por portal o WhatsApp.</p>
+          <div class="canal-badge cb-gold">Con agenda previa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MODALIDADES -->
+<section class="modalidades" id="modalidades">
+  <div class="container">
+    <div class="mod-head reveal">
+      <div class="sec-tag">Modalidades</div>
+      <h2 class="sec-title">Elegí el nivel de acompañamiento que necesitás.</h2>
+      <p class="sec-sub">Desde soporte puntual hasta acompañamiento mensual completo. Todo a medida.</p>
+    </div>
+    <div class="mod-grid reveal">
+      <div class="mod-card">
+        <div class="mod-badge badge-outline">Puntual</div>
+        <span class="mod-icon">🎯</span>
+        <h3>Soporte por Consulta</h3>
+        <p>Para necesidades esporádicas. Cada consulta o intervención se cobra según el tiempo y la complejidad, sin compromiso mensual.</p>
+        <div class="mod-list">
+          <div class="ml-item"><span class="ml-check">✓</span>Resolución de consultas puntuales</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Corrección de errores específicos</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Sin abono mensual</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Ideal para clientes con equipo técnico propio</div>
+        </div>
+      </div>
+      <div class="mod-card featured">
+        <div class="mod-badge badge-gold">⭐ Recomendado</div>
+        <span class="mod-icon">🔄</span>
+        <h3>Abono Mensual de Soporte</h3>
+        <p>La opción más completa. Un paquete de horas mensuales con prioridad de atención, reuniones de seguimiento y capacitación incluida.</p>
+        <div class="mod-list">
+          <div class="ml-item"><span class="ml-check">✓</span>Horas mensuales de soporte incluidas</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Prioridad de atención frente a consultas sueltas</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Reunión mensual de seguimiento incluida</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Capacitación de nuevos integrantes</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Ajustes y mejoras continuas al sistema</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Combinable con gestión contable</div>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="mod-badge badge-outline">Formación</div>
+        <span class="mod-icon">🎓</span>
+        <h3>Capacitación Intensiva</h3>
+        <p>Un programa de capacitación estructurado para cuando incorporás un sistema nuevo o sumás personas al equipo que necesitan formación completa.</p>
+        <div class="mod-list">
+          <div class="ml-item"><span class="ml-check">✓</span>Diagnóstico de necesidades del equipo</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Plan de capacitación personalizado</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Sesiones por rol (administración, ventas, dirección)</div>
+          <div class="ml-item"><span class="ml-check">✓</span>Manual operativo entregado al finalizar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROCESO DE CAPACITACIÓN -->
+<section class="proceso-cap" id="proceso-capacitacion">
+  <div class="pc-grid-bg"></div>
+  <div class="container pc-inner">
+    <div class="pc-head reveal">
+      <div>
+        <div class="sec-tag">Cómo capacitamos</div>
+        <h2 class="sec-title">Un programa de capacitación que genera autonomía real.</h2>
+      </div>
+      <p>No hacemos un tutorial y nos vamos. Construimos el conocimiento en etapas para que el equipo incorpore el sistema de forma natural y duradera.</p>
+    </div>
+    <div class="cap-steps reveal">
+      <div class="cap-step">
+        <div class="cap-step-num">Etapa 01</div>
+        <div class="cap-step-icon">🔍</div>
+        <h4>Diagnóstico del equipo</h4>
+        <p>Identificamos qué necesita aprender cada persona según su rol, su nivel de manejo tecnológico y las funciones que va a operar en el sistema.</p>
+        <div class="cap-step-tags">
+          <div class="cst">Por rol</div><div class="cst">Sin suposiciones</div>
+        </div>
+      </div>
+      <div class="cap-step">
+        <div class="cap-step-num">Etapa 02</div>
+        <div class="cap-step-icon">📋</div>
+        <h4>Plan de capacitación</h4>
+        <p>Diseñamos un plan con el contenido, el orden y la modalidad más adecuada para tu equipo. Sesiones cortas y enfocadas, no maratones de 8 horas.</p>
+        <div class="cap-step-tags">
+          <div class="cst">Sesiones de 1-2hs</div><div class="cst">Práctico desde el día 1</div>
+        </div>
+      </div>
+      <div class="cap-step">
+        <div class="cap-step-num">Etapa 03</div>
+        <div class="cap-step-icon">🖥️</div>
+        <h4>Sesiones de formación</h4>
+        <p>Capacitamos en el sistema real de la empresa, con los datos y los procesos propios. No en demos genéricas que después no se pueden replicar.</p>
+        <div class="cap-step-tags">
+          <div class="cst">Sistema real</div><div class="cst">Presencial o remoto</div>
+        </div>
+      </div>
+      <div class="cap-step">
+        <div class="cap-step-num">Etapa 04</div>
+        <div class="cap-step-icon">📖</div>
+        <h4>Documentación y manual</h4>
+        <p>Al finalizar, entregamos un manual operativo con los procedimientos más importantes para que quede como referencia interna del equipo.</p>
+        <div class="cap-step-tags">
+          <div class="cst">Manual incluido</div><div class="cst">Para nuevos ingresos</div>
+        </div>
+      </div>
+      <div class="cap-step">
+        <div class="cap-step-num">Etapa 05</div>
+        <div class="cap-step-icon">✅</div>
+        <h4>Validación y cierre</h4>
+        <p>Verificamos que cada persona pueda operar el sistema con autonomía. Si algún tema quedó pendiente, lo reforzamos antes de cerrar el programa.</p>
+        <div class="cap-step-tags">
+          <div class="cst">Sin dejar dudas</div><div class="cst">Autonomía garantizada</div>
+        </div>
+      </div>
+      <div class="cap-step">
+        <div class="cap-step-num">Etapa 06</div>
+        <div class="cap-step-icon">🔄</div>
+        <h4>Soporte post-capacitación</h4>
+        <p>Las primeras semanas de operación real son las más críticas. Estamos disponibles para resolver las dudas que surgen en el uso cotidiano.</p>
+        <div class="cap-step-tags">
+          <div class="cst">Primeras semanas</div><div class="cst">Canal directo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TICKET MOCKUP -->
+<section class="ticket-section" id="portal-soporte">
+  <div class="container">
+    <div class="ticket-layout">
+      <div class="ticket-left reveal-left">
+        <div class="sec-tag">El portal de soporte</div>
+        <h2 class="sec-title">Cada consulta, registrada y con seguimiento.</h2>
+        <p class="sec-sub" style="margin-bottom:32px">Eliminamos el WhatsApp desordenado y el mail que se pierde. Cada requerimiento tiene número, responsable, estado y tiempo de resolución.</p>
+        <div class="ticket-features">
+          <div class="tf-item">
+            <div class="tf-icon">🔢</div>
+            <div class="tf-text"><h4>Número de ticket único</h4><p>Cada consulta queda registrada con un número de referencia para seguimiento.</p></div>
+          </div>
+          <div class="tf-item">
+            <div class="tf-icon">📎</div>
+            <div class="tf-text"><h4>Adjuntos y capturas de pantalla</h4><p>Podés adjuntar imágenes o archivos para describir mejor el problema.</p></div>
+          </div>
+          <div class="tf-item">
+            <div class="tf-icon">🔔</div>
+            <div class="tf-text"><h4>Notificaciones de estado</h4><p>Recibís aviso cuando el ticket cambia de estado o cuando hay una respuesta nueva.</p></div>
+          </div>
+          <div class="tf-item">
+            <div class="tf-icon">📊</div>
+            <div class="tf-text"><h4>Historial completo</h4><p>Todo el historial de consultas y resoluciones queda guardado para consultar cuando necesitás.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="ticket-mockup">
+          <div class="tm-bar">
+            <div class="tm-dot r"></div><div class="tm-dot y"></div><div class="tm-dot g"></div>
+            <div class="tm-title">Portal Clientes LEDGIX — Mesa de Soporte</div>
+          </div>
+          <div class="tm-body">
+            <div class="tm-stats">
+              <div class="tm-stat"><div class="tms-num green">12</div><div class="tms-label">Resueltos este mes</div></div>
+              <div class="tm-stat"><div class="tms-num gold">2</div><div class="tms-label">En proceso</div></div>
+              <div class="tm-stat"><div class="tms-num">4hs</div><div class="tms-label">Tiempo prom. respuesta</div></div>
+            </div>
+            <div class="tm-label">Tickets recientes</div>
+            <div class="ticket-card">
+              <div class="tc-row">
+                <div class="tc-title">#047 — Error en liquidación de retenciones ARBA</div>
+                <div class="tc-badge tb-prog">En proceso</div>
+              </div>
+              <div class="tc-meta">Abierto hace 2 hs · Prioridad alta · Asignado a consultor</div>
+            </div>
+            <div class="ticket-card">
+              <div class="tc-row">
+                <div class="tc-title">#046 — ¿Cómo generar el reporte de IVA del mes?</div>
+                <div class="tc-badge tb-ok">Resuelto</div>
+              </div>
+              <div class="tc-meta">Resuelto en 1h 20min · Consulta funcional</div>
+            </div>
+            <div class="ticket-card">
+              <div class="tc-row">
+                <div class="tc-title">#045 — Capacitación usuario nuevo — Área ventas</div>
+                <div class="tc-badge tb-ok">Completado</div>
+              </div>
+              <div class="tc-meta">Sesión realizada · Manual enviado · 45 min</div>
+            </div>
+            <div class="ticket-card">
+              <div class="tc-row">
+                <div class="tc-title">#044 — Ajuste en plan de cuentas — cuenta nueva</div>
+                <div class="tc-badge tb-open">Pendiente</div>
+              </div>
+              <div class="tc-meta">Abierto hoy · En revisión contable</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <div class="faq-left reveal-left">
+        <div class="sec-tag">Preguntas frecuentes</div>
+        <h2 class="sec-title">Lo que nos preguntan antes de arrancar.</h2>
+        <p class="sec-sub" style="margin-bottom:36px">Si tu duda no está acá, escribinos. Respondemos el mismo día.</p>
+        <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20tengo%20una%20consulta%20sobre%20soporte%20y%20capacitaci%C3%B3n." class="btn-bordo" target="_blank">💬 Hacer una consulta</a>
+      </div>
+      <div class="faq-list reveal-right">
+        <div class="faq-item">
+          <div class="faq-q">¿El soporte está incluido en la implementación o se cobra aparte? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">La implementación incluye un período de soporte post-lanzamiento (generalmente 30 días) para resolver las dudas iniciales. El soporte mensual continuo es un servicio aparte que podés contratar como abono. Lo definimos claramente en la propuesta para que no haya sorpresas.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Cuántas horas de soporte incluye el abono mensual? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">El paquete de horas se define según las necesidades de tu empresa. En la reunión inicial estimamos cuántas horas mensuales necesitás en base a la complejidad de tu operación y el tamaño del equipo. El objetivo es que el abono cubra lo que realmente usás, sin pagar de más.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Qué pasa si necesito más horas de las incluidas en el abono? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Las horas adicionales se facturan por separado a la tarifa acordada. Te avisamos antes de superarlo para que puedas decidir si ampliás el abono o resolvés el tema en el mes siguiente.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Cuánto tiempo lleva capacitar a un equipo nuevo? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Depende del tamaño del equipo y de la complejidad del sistema. Para equipos pequeños (2 a 5 personas), generalmente alcanza con 3 a 6 sesiones de 1 a 2 horas. Para equipos más grandes o sistemas más complejos, el programa puede extenderse a 2 o 3 semanas.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Pueden capacitar a alguien que no tiene experiencia con sistemas? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Sí, y es algo muy común. Adaptamos el ritmo y el lenguaje de la capacitación al nivel de cada persona. No asumimos conocimientos previos y nos aseguramos de que cada usuario pueda operar el sistema con confianza, independientemente de su experiencia tecnológica.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Puedo contratar solo la capacitación sin el soporte mensual? <span class="faq-arrow">▾</span></div>
+          <div class="faq-a">Sí. La capacitación se puede contratar como un servicio independiente, por ejemplo cuando incorporás un sistema nuevo o cuando sumás personas al equipo. No es obligatorio contratar el abono mensual para acceder a la capacitación.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="container cta-inner reveal">
+    <div class="sec-tag">Empezá hoy</div>
+    <h2 class="sec-title">Tu equipo merece<br/>operar con autonomía.</h2>
+    <p class="sec-sub">Hablemos sobre qué nivel de soporte y capacitación necesita tu empresa. Primera reunión sin cargo, sin compromisos.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20consultar%20sobre%20soporte%20y%20capacitaci%C3%B3n%20para%20mi%20equipo." class="btn-wsp" target="_blank">💬 WhatsApp directo</a>
+      <a href="mailto:ledgix.ar@gmail.com?subject=Consulta%20sobre%20Soporte%20y%20Capacitaci%C3%B3n" class="btn-mail">✉️ Enviar un mail</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- OTROS SERVICIOS -->
+<section class="other-services">
+  <div class="container">
+    <div class="other-head reveal">
+      <div class="sec-tag">Otros servicios</div>
+      <p>El soporte y la capacitación potencian todos los demás servicios de Ledgix.</p>
+    </div>
+    <div class="other-grid reveal">
+      <a href="erp.html" class="other-card"><div class="other-card-icon">⚙️</div><span>Implementación de ERP</span></a>
+      <a href="contable.html" class="other-card"><div class="other-card-icon">📒</div><span>Gestión Contable e Impositiva</span></a>
+      <a href="costos.html" class="other-card"><div class="other-card-icon">🏭</div><span>Sistemas de Costos</span></a>
+      <a href="automatizacion.html" class="other-card"><div class="other-card-icon">🔄</div><span>Automatización de Procesos</span></a>
+      <a href="tableros.html" class="other-card"><div class="other-card-icon">📈</div><span>Tableros de Control</span></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="logo_LEDGIX.jpeg" alt="Ledgix"/>
+      <p>Consultora especializada en sistemas de información financiera y gestión contable para PyMEs argentinas.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="erp.html">Implementación ERP</a></li>
+        <li><a href="contable.html">Gestión Contable e Impositiva</a></li>
+        <li><a href="costos.html">Sistemas de Costos</a></li>
+        <li><a href="automatizacion.html">Automatización de Procesos</a></li>
+        <li><a href="tableros.html">Tableros de Control</a></li>
+        <li><a href="soporte.html">Soporte y Capacitación</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <div class="footer-contact-item"><div class="fci-icon">📍</div><div class="fci-text">Buenos Aires, Argentina</div></div>
+      <div class="footer-contact-item"><div class="fci-icon">💬</div><div class="fci-text">+54 11 6151-2205</div></div>
+      <div class="footer-contact-item"><div class="fci-icon">✉️</div><div class="fci-text">ledgix.ar@gmail.com</div></div>
+      <div class="footer-contact-item"><div class="fci-icon">🌐</div><div class="fci-text">ledgix.com.ar</div></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 LEDGIX. Todos los derechos reservados.</div>
+    <div id="google_translate_element"></div>
+  </div>
+</footer>
+
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{navbar.classList.toggle('solid',window.scrollY>60)});
+const mobileDrawer=document.getElementById('mobileDrawer');
+const navToggle=document.getElementById('navToggle');
+function closeMobile(){mobileDrawer.classList.remove('open');navToggle.classList.remove('open');document.body.style.overflow=''}
+navToggle.addEventListener('click',()=>{const o=mobileDrawer.classList.toggle('open');navToggle.classList.toggle('open');document.body.style.overflow=o?'hidden':''});
+mobileDrawer.addEventListener('click',(e)=>{if(e.target===mobileDrawer)closeMobile()});
+const allReveals=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.10});
+allReveals.forEach(r=>obs.observe(r));
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'es',layout:google.translate.TranslateElement.InlineLayout.SIMPLE},'google_translate_element')}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
