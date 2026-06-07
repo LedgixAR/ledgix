@@ -28,9 +28,6 @@
 html{scroll-behavior:smooth}
 body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden}
 
-/* ══════════════════════════════════════
-   NAVBAR con logo más grande
-══════════════════════════════════════ */
 .navbar{
   position:fixed;top:0;left:0;right:0;z-index:200;
   transition:background 0.4s,box-shadow 0.4s,padding 0.4s;
@@ -50,7 +47,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
   width:auto;
   display:block;
 }
-
 .nav-menu{display:flex;align-items:center;gap:8px;list-style:none}
 .nav-menu>li{position:relative}
 .nav-menu>li>a{
@@ -64,8 +60,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
 .nav-menu>li>a:hover{color:#fff;background:rgba(255,255,255,0.07)}
 .nav-menu>li>a .chevron{font-size:0.6rem;transition:transform 0.2s}
 .nav-menu>li:hover>a .chevron{transform:rotate(180deg)}
-
-/* Dropdown */
 .dropdown{
   position:absolute;top:calc(100% + 8px);left:0;
   background:var(--dark);
@@ -93,7 +87,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
 }
 .drop-text strong{display:block;font-size:0.84rem;font-weight:600;color:#fff;margin-bottom:2px}
 .drop-text span{font-size:0.76rem;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.4}
-
 .nav-actions{display:flex;align-items:center;gap:12px}
 .nav-portal{
   font-size:0.78rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;
@@ -114,15 +107,11 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
   box-shadow:0 4px 16px rgba(139,26,26,0.4);
 }
 .nav-cta-btn:hover{background:var(--bordo-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(139,26,26,0.5)}
-
-/* Mobile toggle */
 .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:210}
 .nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s}
 .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-/* Mobile drawer */
 .mobile-drawer{
   display:none;
   position:fixed;top:110px;left:0;right:0;bottom:0;
@@ -164,23 +153,11 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
 .mobile-wsp:hover{background:#1fb855}
 .mobile-portal{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2)}
 .mobile-portal:hover{color:#fff;border-color:rgba(255,255,255,0.5)}
-
-/* Ajustes responsive para el logo */
 @media (max-width: 768px) {
-  .nav-inner {
-    height: 80px;
-  }
-  .nav-logo img {
-    height: 55px;
-  }
-  .mobile-drawer {
-    top: 80px;
-  }
+  .nav-inner { height: 80px; }
+  .nav-logo img { height: 55px; }
+  .mobile-drawer { top: 80px; }
 }
-
-/* ══════════════════════════════════════
-   RESTO DEL CSS (Hero, Servicios, etc.)
-══════════════════════════════════════ */
 .hero{
   min-height:100vh;
   position:relative;
@@ -315,7 +292,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
   z-index:2;animation:bounce 2s infinite;
 }
 .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent)}
-
 .credibility{
   padding:40px 6%;
   background:var(--navy);
@@ -340,7 +316,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
   transition:color 0.2s,border-color 0.2s;
 }
 .cred-badge:hover{color:rgba(255,255,255,0.75);border-color:rgba(255,255,255,0.25)}
-
 .container{max-width:1200px;margin:0 auto;padding:0 6%}
 .sec-tag{
   display:inline-flex;align-items:center;gap:10px;
@@ -358,7 +333,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
   font-size:1rem;font-weight:300;line-height:1.8;
   color:var(--gray);max-width:560px;
 }
-
 .pain{padding:110px 0;background:var(--off)}
 .pain-layout{
   display:grid;grid-template-columns:1fr 1fr;
@@ -404,7 +378,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
 }
 .pi-text h4{font-size:0.92rem;font-weight:600;color:var(--navy);margin-bottom:4px}
 .pi-text p{font-size:0.83rem;font-weight:300;line-height:1.6;color:var(--gray)}
-
 .services{padding:110px 0;background:var(--white)}
 .services-intro{
   display:grid;grid-template-columns:1fr 1fr;
@@ -466,7 +439,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
   transition:opacity 0.25s,transform 0.25s;
 }
 .srv-card:hover .srv-more{opacity:1;transform:translateX(0)}
-
 .diferencial{padding:110px 0;background:var(--dark);position:relative;overflow:hidden}
 .dif-bg-img{
   position:absolute;right:0;top:0;bottom:0;width:48%;
@@ -553,7 +525,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
   font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px;
 }
 .dif-stat-lbl{font-size:0.72rem;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.4}
-
 .proceso{padding:110px 0;background:var(--off)}
 .proceso-head{text-align:center;margin-bottom:80px}
 .proceso-head .sec-tag{justify-content:center}
@@ -593,7 +564,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
 }
 .step h4{font-size:1rem;font-weight:700;color:var(--navy);font-family:'Playfair Display',serif}
 .step p{font-size:0.83rem;font-weight:300;line-height:1.65;color:var(--gray)}
-
 .portal{padding:110px 0;background:var(--white)}
 .portal-layout{
   display:grid;grid-template-columns:1fr 1fr;
@@ -680,7 +650,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
 .bar-5{background:var(--navy-mid);height:60%;animation-delay:0.8s}
 .bar-6{background:var(--green);height:90%;animation-delay:0.95s}
 .chart-label{font-size:0.68rem;color:rgba(255,255,255,0.3);margin-top:8px;text-align:center}
-
 .cta-section{
   padding:130px 0;
   background:var(--navy);
@@ -722,7 +691,6 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);o
   transition:all 0.2s;
 }
 .btn-mail:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.07)}
-
 footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255,255,255,0.05)}
 .footer-grid{
   display:grid;grid-template-columns:1.5fr 1fr 1fr;
@@ -758,7 +726,6 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
 }
 .goog-logo-link,.goog-te-gadget>span{display:none!important}
 .goog-te-gadget{font-size:0!important}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
 @keyframes barFill{from{width:0}to{width:var(--w,100%)}}
 @keyframes barRise{from{height:0;opacity:0}to{opacity:0.85}}
@@ -769,7 +736,6 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
 .reveal-left.visible{opacity:1;transform:none}
 .reveal-right{opacity:0;transform:translateX(32px);transition:opacity 0.75s ease,transform 0.75s ease}
 .reveal-right.visible{opacity:1;transform:none}
-
 @media(max-width:1024px){
   .hero-content{grid-template-columns:1fr;padding-top:120px}
   .hero-card{max-width:500px}
@@ -792,23 +758,21 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
 </style>
 </head>
 <body>
-
-<!-- ═══════════════════════════════════ NAVBAR ═══════════════════════════════════ -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="/" class="nav-logo">
-      <img src="logo_LEDGIX.jpeg" alt="Ledgix — Sistemas de Información Financiera"/>
+      <img src="logo_LEDGIX.jpeg" alt="Ledgix"/>
     </a>
     <ul class="nav-menu">
       <li>
         <a href="#servicios">Servicios <span class="chevron">▾</span></a>
         <div class="dropdown">
-          <a href="erp.html"><div class="drop-icon">⚙️</div><div class="drop-text"><strong>Implementación de ERP</strong><span>Parametrización y puesta a punto de sistemas de gestión empresarial</span></div></a>
-          <a href="contable.html"><div class="drop-icon">📒</div><div class="drop-text"><strong>Gestión Contable e Impositiva</strong><span>Liquidación de impuestos, balances y auditoría interna</span></div></a>
-          <a href="costos.html"><div class="drop-icon">🏭</div><div class="drop-text"><strong>Sistemas de Costos</strong><span>Estructura de costos para conocer tu rentabilidad real</span></div></a>
-          <a href="automatizacion.html"><div class="drop-icon">🔄</div><div class="drop-text"><strong>Automatización de Procesos</strong><span>Eliminamos tareas repetitivas con circuitos eficientes</span></div></a>
-          <a href="tableros.html"><div class="drop-icon">📈</div><div class="drop-text"><strong>Tableros de Control</strong><span>Dashboards financieros y operativos en tiempo real</span></div></a>
-          <a href="soporte.html"><div class="drop-icon">🎓</div><div class="drop-text"><strong>Soporte y Capacitación</strong><span>Acompañamiento continuo post-implementación</span></div></a>
+          <a href="/erp.html"><div class="drop-icon">⚙️</div><div class="drop-text"><strong>Implementación de ERP</strong><span>Parametrización y puesta a punto de sistemas de gestión empresarial</span></div></a>
+          <a href="/contable.html"><div class="drop-icon">📒</div><div class="drop-text"><strong>Gestión Contable e Impositiva</strong><span>Liquidación de impuestos, balances y auditoría interna</span></div></a>
+          <a href="/costos.html"><div class="drop-icon">🏭</div><div class="drop-text"><strong>Sistemas de Costos</strong><span>Estructura de costos para conocer tu rentabilidad real</span></div></a>
+          <a href="/automatizacion.html"><div class="drop-icon">🔄</div><div class="drop-text"><strong>Automatización de Procesos</strong><span>Eliminamos tareas repetitivas con circuitos eficientes</span></div></a>
+          <a href="/tableros.html"><div class="drop-icon">📈</div><div class="drop-text"><strong>Tableros de Control</strong><span>Dashboards financieros y operativos en tiempo real</span></div></a>
+          <a href="/soporte.html"><div class="drop-icon">🎓</div><div class="drop-text"><strong>Soporte y Capacitación</strong><span>Acompañamiento continuo post-implementación</span></div></a>
         </div>
       </li>
       <li><a href="#diferencial">Nosotros</a></li>
@@ -817,14 +781,12 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="portal.html" class="nav-portal">Acceso Clientes</a>
+      <a href="/portal.html" class="nav-portal">Acceso Clientes</a>
       <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20operativo." class="nav-cta-btn" target="_blank">Diagnóstico gratuito</a>
     </div>
     <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
   </div>
 </nav>
-
-<!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="mobileDrawer">
   <ul class="mobile-nav-links">
     <li><a href="#problema" onclick="closeMobile()">El Problema</a></li>
@@ -835,20 +797,18 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
   </ul>
   <div class="mobile-services-label">Servicios</div>
   <div class="mobile-services-grid">
-    <a href="erp.html" onclick="closeMobile()"><span class="icon">⚙️</span><span class="label">Implementación de ERP</span></a>
-    <a href="contable.html" onclick="closeMobile()"><span class="icon">📒</span><span class="label">Gestión Contable e Impositiva</span></a>
-    <a href="costos.html" onclick="closeMobile()"><span class="icon">🏭</span><span class="label">Sistemas de Costos</span></a>
-    <a href="automatizacion.html" onclick="closeMobile()"><span class="icon">🔄</span><span class="label">Automatización de Procesos</span></a>
-    <a href="tableros.html" onclick="closeMobile()"><span class="icon">📈</span><span class="label">Tableros de Control</span></a>
-    <a href="soporte.html" onclick="closeMobile()"><span class="icon">🎓</span><span class="label">Soporte y Capacitación</span></a>
+    <a href="/erp.html" onclick="closeMobile()"><span class="icon">⚙️</span><span class="label">Implementación de ERP</span></a>
+    <a href="/contable.html" onclick="closeMobile()"><span class="icon">📒</span><span class="label">Gestión Contable e Impositiva</span></a>
+    <a href="/costos.html" onclick="closeMobile()"><span class="icon">🏭</span><span class="label">Sistemas de Costos</span></a>
+    <a href="/automatizacion.html" onclick="closeMobile()"><span class="icon">🔄</span><span class="label">Automatización de Procesos</span></a>
+    <a href="/tableros.html" onclick="closeMobile()"><span class="icon">📈</span><span class="label">Tableros de Control</span></a>
+    <a href="/soporte.html" onclick="closeMobile()"><span class="icon">🎓</span><span class="label">Soporte y Capacitación</span></a>
   </div>
   <div class="mobile-actions">
     <a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20operativo." class="mobile-wsp" target="_blank">💬 Diagnóstico sin cargo</a>
-    <a href="portal.html" class="mobile-portal" onclick="closeMobile()">🔐 Acceso Clientes</a>
+    <a href="/portal.html" class="mobile-portal" onclick="closeMobile()">🔐 Acceso Clientes</a>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -877,8 +837,6 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
-
-<!-- CREDIBILIDAD -->
 <div class="credibility">
   <div class="cred-inner">
     <div class="cred-label">Ecosistema de soluciones</div>
@@ -893,8 +851,6 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
     </div>
   </div>
 </div>
-
-<!-- PROBLEMA / DOLOR -->
 <section class="pain" id="problema">
   <div class="container">
     <div class="pain-layout">
@@ -917,8 +873,6 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
     </div>
   </div>
 </section>
-
-<!-- SERVICIOS -->
 <section class="services" id="servicios">
   <div class="container">
     <div class="services-intro reveal">
@@ -926,17 +880,15 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
       <div class="services-intro-right"><p>No somos programadores que instalan software sin entender de balances, ni contadores que le tienen miedo a la tecnología. Somos los dos al mismo tiempo — y esa es la diferencia que define el resultado.</p><a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20saber%20m%C3%A1s%20sobre%20sus%20servicios." class="btn-gold" style="font-size:0.78rem;padding:13px 26px;" target="_blank">Consultá sin cargo →</a></div>
     </div>
     <div class="services-grid reveal">
-      <div class="srv-card"><div class="srv-num">Servicio 01</div><div class="srv-icon">⚙️</div><h3>Implementación de ERP</h3><p>Selección, parametrización y puesta a punto de sistemas de gestión empresarial. Migración de datos históricos y capacitación de tu equipo para una adopción fluida.</p><a href="erp.html" class="srv-more">Saber más →</a></div>
-      <div class="srv-card"><div class="srv-num">Servicio 02</div><div class="srv-icon">📒</div><h3>Gestión Contable, Impositiva y Auditoría</h3><p>Liquidación de impuestos nacionales y provinciales, armado y presentación de estados contables, auditoría interna y planificación fiscal estratégica.</p><a href="contable.html" class="srv-more">Saber más →</a></div>
-      <div class="srv-card"><div class="srv-num">Servicio 03</div><div class="srv-icon">🔄</div><h3>Automatización de Procesos</h3><p>Diseño de circuitos administrativos eficientes para eliminar tareas repetitivas. Cada proceso se analiza a medida — no automatizamos lo que primero no entendemos.</p><a href="automatizacion.html" class="srv-more">Saber más →</a></div>
-      <div class="srv-card"><div class="srv-num">Servicio 04</div><div class="srv-icon">🏭</div><h3>Sistemas de Costos</h3><p>Diseño e implementación de estructuras de costos para que sepas exactamente cuánto te cuesta producir o prestar cada servicio y cuál es tu margen real.</p><a href="costos.html" class="srv-more">Saber más →</a></div>
-      <div class="srv-card"><div class="srv-num">Servicio 05</div><div class="srv-icon">📈</div><h3>Tableros de Control y Reportes</h3><p>Dashboards financieros y operativos en tiempo real. La información clave de tu negocio disponible en un clic, sin depender de que alguien te arme un Excel.</p><a href="tableros.html" class="srv-more">Saber más →</a></div>
-      <div class="srv-card"><div class="srv-num">Servicio 06</div><div class="srv-icon">🎓</div><h3>Soporte y Capacitación</h3><p>Acompañamiento continuo post-implementación. Capacitamos a tu equipo y resolvemos dudas operativas para que el sistema funcione bien desde adentro hacia afuera.</p><a href="soporte.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 01</div><div class="srv-icon">⚙️</div><h3>Implementación de ERP</h3><p>Selección, parametrización y puesta a punto de sistemas de gestión empresarial. Migración de datos históricos y capacitación de tu equipo para una adopción fluida.</p><a href="/erp.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 02</div><div class="srv-icon">📒</div><h3>Gestión Contable, Impositiva y Auditoría</h3><p>Liquidación de impuestos nacionales y provinciales, armado y presentación de estados contables, auditoría interna y planificación fiscal estratégica.</p><a href="/contable.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 03</div><div class="srv-icon">🔄</div><h3>Automatización de Procesos</h3><p>Diseño de circuitos administrativos eficientes para eliminar tareas repetitivas. Cada proceso se analiza a medida — no automatizamos lo que primero no entendemos.</p><a href="/automatizacion.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 04</div><div class="srv-icon">🏭</div><h3>Sistemas de Costos</h3><p>Diseño e implementación de estructuras de costos para que sepas exactamente cuánto te cuesta producir o prestar cada servicio y cuál es tu margen real.</p><a href="/costos.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 05</div><div class="srv-icon">📈</div><h3>Tableros de Control y Reportes</h3><p>Dashboards financieros y operativos en tiempo real. La información clave de tu negocio disponible en un clic, sin depender de que alguien te arme un Excel.</p><a href="/tableros.html" class="srv-more">Saber más →</a></div>
+      <div class="srv-card"><div class="srv-num">Servicio 06</div><div class="srv-icon">🎓</div><h3>Soporte y Capacitación</h3><p>Acompañamiento continuo post-implementación. Capacitamos a tu equipo y resolvemos dudas operativas para que el sistema funcione bien desde adentro hacia afuera.</p><a href="/soporte.html" class="srv-more">Saber más →</a></div>
     </div>
   </div>
 </section>
-
-<!-- DIFERENCIAL -->
 <section class="diferencial" id="diferencial">
   <div class="dif-bg-img"></div>
   <div class="container">
@@ -946,25 +898,17 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
     </div>
   </div>
 </section>
-
-<!-- PROCESO -->
 <section class="proceso" id="proceso">
   <div class="container"><div class="proceso-head reveal"><div class="sec-tag">Metodología</div><h2 class="sec-title">Un proceso claro, sin sorpresas.</h2><p class="sec-sub">Cada proyecto comienza con un diagnóstico honesto. Nunca implementamos tecnología sobre procesos que primero no entendemos y ordenamos.</p></div><div class="proceso-track reveal"><div class="step"><div class="step-circle">🔍</div><div class="step-num">Paso 01</div><h4>Diagnóstico Operativo</h4><p>Analizamos cómo trabaja tu empresa: procesos, sistemas actuales, flujo de información y necesidades reales. Sin suposiciones.</p></div><div class="step"><div class="step-circle">🗺️</div><div class="step-num">Paso 02</div><h4>Diseño de la Solución</h4><p>Proponemos un plan a medida con las herramientas y los procesos más adecuados para tu realidad y tu presupuesto.</p></div><div class="step"><div class="step-circle">⚡</div><div class="step-num">Paso 03</div><h4>Implementación</h4><p>Ejecutamos el proyecto, parametrizamos el sistema y migramos la información con control total de cada etapa.</p></div><div class="step"><div class="step-circle">🔄</div><div class="step-num">Paso 04</div><h4>Soporte Continuo</h4><p>Acompañamos la operación con soporte, reportes periódicos y mejoras continuas a medida que tu empresa crece.</p></div></div></div>
 </section>
-
-<!-- PORTAL CLIENTES -->
 <section class="portal" id="portal">
   <div class="container"><div class="portal-layout"><div class="reveal-left"><div class="sec-tag">Clientes activos</div><h2 class="sec-title">Tu gestión centralizada, sin caos.</h2><p class="sec-sub">Eliminamos el WhatsApp desordenado y el mail interminable. Todo en un solo lugar, ordenado y con seguimiento.</p><div class="portal-features"><div class="pf-item"><div class="pf-icon">📂</div><div class="pf-body"><h4>Carga de documentación mensual</h4><p>Subí tus facturas, retenciones y comprobantes en un clic, de forma segura y sin que se pierda nada.</p></div></div><div class="pf-item"><div class="pf-icon">🎫</div><div class="pf-body"><h4>Sistema de tickets de consulta</h4><p>Elevá tus consultas contables o de sistemas. Cada requerimiento tiene número, estado y tiempo de respuesta garantizado.</p></div></div><div class="pf-item"><div class="pf-icon">📅</div><div class="pf-body"><h4>Agenda de reuniones online</h4><p>Coordiná reuniones de seguimiento con tu consultor asignado directamente desde el portal, sin idas y vueltas.</p></div></div></div><div class="portal-action"><a href="mailto:ledgix.ar@gmail.com?subject=Solicitud%20de%20acceso%20al%20portal%20Ledgix" class="btn-gold" style="font-size:0.82rem;padding:14px 28px;">📩 Solicitar acceso</a><a href="https://wa.me/5491161512205" class="btn-ghost" style="font-size:0.82rem;padding:14px 28px;background:transparent;color:var(--navy);border-color:rgba(15,37,87,0.25);" target="_blank">💬 Consultar por WhatsApp</a></div></div><div class="reveal-right"><div class="browser"><div class="browser-bar"><div class="bd r"></div><div class="bd y"></div><div class="bd g"></div><div class="browser-url">ledgix.com.ar/portal — Panel de Gestión</div></div><div class="browser-body"><div class="b-section-title">Estado de cuenta</div><div class="b-pill-row"><div class="b-pill pill-green">✓ Activo</div><div class="b-pill pill-amber">⏳ 2 tickets abiertos</div><div class="b-pill pill-red">📅 Vto. próximo</div></div><div class="b-ticket"><div class="bt-left"><strong>Consulta #031 — Retención IIBB ARBA</strong><span>Recibido hace 1 h · Asignado a consultor</span></div><div class="bt-status st-pending">En proceso</div></div><div class="b-ticket"><div class="bt-left"><strong>DDJJ IVA — Junio 2026</strong><span>📎 Documentación completa · Lista para presentar</span></div><div class="bt-status st-ok">Listo</div></div><div class="b-chart"><div class="b-section-title">Evolución de resultados</div><div class="chart-bars"><div class="bar bar-1"></div><div class="bar bar-2"></div><div class="bar bar-3"></div><div class="bar bar-4"></div><div class="bar bar-5"></div><div class="bar bar-6"></div></div><div class="chart-label">Ene · Feb · Mar · Abr · May · Jun</div></div><div class="b-upload"><span class="b-upload-icon">📎</span>Arrastrá tu documentación aquí o hacé clic para subir</div></div></div></div></div></div>
 </section>
-
-<!-- CTA FINAL -->
 <section class="cta-section" id="contacto">
   <div class="cta-bg"></div>
   <div class="cta-overlay"></div>
   <div class="container cta-inner reveal"><div class="sec-tag">Empezá hoy</div><h2 class="sec-title">¿Listo para ordenar<br/>tu empresa de verdad?</h2><p class="sec-sub">Empezamos con un diagnóstico operativo sin cargo. Sin compromisos, sin letra chica. Solo una reunión honesta para entender tu negocio y ver si podemos ayudarte.</p><div class="cta-btns"><a href="https://wa.me/5491161512205?text=Hola%20Ledgix%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20operativo%20sin%20cargo." class="btn-wsp" target="_blank">💬 WhatsApp directo</a><a href="mailto:ledgix.ar@gmail.com?subject=Consulta%20desde%20la%20web%20Ledgix" class="btn-mail">✉️ Enviar un mail</a></div></div>
 </section>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand"><img src="logo_LEDGIX.jpeg" alt="Ledgix"/><p>Consultora especializada en sistemas de información financiera y gestión contable para PyMEs argentinas. Tecnología y contabilidad integradas.</p></div>
@@ -973,7 +917,6 @@ footer{background:var(--dark);padding:64px 6% 32px;border-top:1px solid rgba(255
   </div>
   <div class="footer-bottom"><div class="footer-copy">© 2026 LEDGIX. Todos los derechos reservados.</div><div id="google_translate_element"></div></div>
 </footer>
-
 <script>
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{ navbar.classList.toggle('solid',window.scrollY>60); });
